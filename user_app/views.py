@@ -6,3 +6,6 @@ def index(request):
 
 def area_chart(request):
     return render(request, 'area_chart.html')
+
+def datatables(request):
+    return render(request, 'datatables.html')
