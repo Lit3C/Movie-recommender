@@ -2,15 +2,12 @@
 {% load static %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
+<div class="m-3">
             <h1>Casting</h1>
-            <p>Cast page</p>
-        </div>
-    </div>
+            <table id="cast-datatable"></table>
+</div>
 {% endblock content %}
 
 {% block scripts %}
-<script src="{% static '/js/index.js' %}"></script>
+<script src="{% static '/js/casting.js' %}"></script>
 {% endblock scripts %}
