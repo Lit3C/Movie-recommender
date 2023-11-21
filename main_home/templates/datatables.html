@@ -25,38 +25,39 @@
     </div>
 </body>
 <script>
-    const datatable = new simpleDatatables.DataTable("#myTable", {
+    const dataTable = new simpleDatatables.DataTable("#myTable", {
         searchable: true,
         fixedHeight: true,
         data: {
-            headings: ["heading 1", "heading 2", "heading 3"]
+            headings: ["heading 1", "heading 2", "heading 3"],
         }
     })
-    datatable.setMessage(`
-        <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
-    `)
+    //dataTable.setMessage(`
+    //    <div class="spinner-border" role="status">
+    //        <span class="visually-hidden">Loading...</span>
+    //    </div>
+    //`)
     
-    setTimeout(() => {
-        datatable.rows.add([
-            ["column1", "column2", "felix"],
-            ["column1", "column2", "column3"],
-            ["column1", "column2", "column3"],
-            ["column1", "column2", "column3"],
-            ["column1", "column2", "felix"],
-            ["column1", "column2", "column3"],
-            ["column1", "column2", "column3"],
-            ["column1", "column2", "column3"],
-            ["column1", "column2", "felix"],
-            ["column1", "column2", "column3"],
-            ["column1", "column2", "column3"],
-            ["column1", "column2", "column3"],
-            ["column1", "column2", "felix"],
-            ["column1", "column2", "column3"],
-            ["column1", "column2", "column3"],
-            ["column1", "column2", "column3"]
-        ])
-    }, 1000);
+    //setTimeout(() => {
+    dataTable.rows.add(
+    [
+        ["column1", "column2", "felix"],
+        ["column1", "column2", "column3"],
+        ["column1", "column2", "column3"],
+        ["column1", "column2", "column3"],
+        ["column1", "column2", "felix"],
+        ["column1", "column2", "column3"],
+        ["column1", "column2", "column3"],
+        ["column1", "column2", "column3"],
+        ["column1", "column2", "felix"],
+        ["column1", "column2", "column3"],
+        ["column1", "column2", "column3"],
+        ["column1", "column2", "column3"],
+        ["column1", "column2", "felix"],
+        ["column1", "column2", "column3"],
+        ["column1", "column2", "column3"],
+        ["column1", "column2", "column3"],
+    ])
+    //}, 1000);
 </script>
 </html>
