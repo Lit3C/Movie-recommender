@@ -4,8 +4,8 @@ from django.shortcuts import render
 def index(request):
     return render(request, 'dashboard.html')
 
-def movies(request):
-    return render(request, 'movies.html')
+# def movies(request):
+#     return render(request, 'movies.html')
 
 def casting(request):
     return render(request, 'casting.html')
