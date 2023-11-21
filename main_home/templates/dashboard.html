@@ -1,11 +1,50 @@
 {% extends "layouts/base.html" %}
+{% load static %}
 
 {% block content %}
     <div class="d-flex">
         {% include 'layouts/sidebar.html' %}
         <div class="w-100">
             {% include 'layouts/header.html' %}
-            <h1>Dashboard</h1>
+            <div class="my-3 mx-3">
+                <h1>Dashboard</h1>
+                <div class="d-flex">
+                    <div class="col-3 card mx-3">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">Total Views</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Yearly</h6>
+                            <div>
+                                <canvas id="total-views"></canvas>
+                            </div>
+                            <h1 class="card-text text-end">5,000,000</h1>
+                        </div>
+                    </div>
+                    <div class="col-3 card mx-3">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">Revenue</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Annual</h6>
+                            <div>
+                                <canvas id="total-views"></canvas>
+                            </div>
+                            <h1 class="card-text text-end">$8,108</h1>
+                        </div>
+                    </div>
+                    <div class="col-3 card mx-3">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">Growth Rate</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Yearly</h6>
+                            <div>
+                                <canvas id="total-views"></canvas>
+                            </div>
+                            <h1 class="card-text text-end text-success">79%</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock content %}
+
+{% block scripts %}
+<script scr="{% static '/js/index.js' %}"></script>
+{% endblock scripts %}
