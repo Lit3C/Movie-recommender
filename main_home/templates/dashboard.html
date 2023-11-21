@@ -1,6 +1,11 @@
 {% extends "layouts/base.html" %}
 
 {% block content %}
-    <h1>Dashboard</h1>
-    <p>Home page content</p>
+    <div class="d-flex">
+        {% include 'layouts/sidebar.html' %}
+        <div class="w-100">
+            {% include 'layouts/header.html' %}
+            <h1>Dashboard</h1>
+        </div>
+    </div>
 {% endblock content %}
