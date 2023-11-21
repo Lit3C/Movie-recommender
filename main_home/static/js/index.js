@@ -1,6 +1,9 @@
 const totalViewChart = document.getElementById('total-views-chart');
 const revenueChart = document.getElementById('revenue-chart');
 const growthRateChart = document.getElementById('growth-rate-chart');
+const subscriberCountChart = document.getElementById('subscriber-count');
+const trafficSourcesElement = document.getElementById('traffic-sources');
+const datatable = document.getElementById('datatable');
 
 new Chart(totalViewChart, {
     type: 'line',
@@ -18,5 +21,71 @@ new Chart(totalViewChart, {
                 beginAtZero: true
             }
         }
+    }
+});
+
+const estimatedRevenueChart = new Chart(revenueChart, {
+    type: 'line',
+    data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+            labels: '# of votes',
+            data: [255, 280, 290, 179, 512, 580],
+            borderWidth: 1,
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+const subscriberCount = new Chart(subscriberCountChart, {
+    type: 'line',
+    data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+            labels: '# of votes',
+            data: [12, 19, 3, 5, 2, 3],
+            borderWidth: 1,
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+const trafficSourcesChart = new Chart(trafficSourcesElement, {
+    type: 'pie',
+    data: {
+        labels: ['Youtube', 'Facebook', 'Snapchat', 'Google', 'FireFox', 'Opera'],
+        datasets: [{
+            labels: '# shares',
+            data: [12, 19, 3, 5, 2, 3],
+            borderWidth: 1,
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+})
+
+// Initialize datatable
+const dataTable = new simpleDatatables.DataTable("#datatable",{
+    searchable: true,
+    fixedHeight: true,
+    data : {
+        headings: ['Video Title', 'Published Date', 'Views Count'],
     }
 });
