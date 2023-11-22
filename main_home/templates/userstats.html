@@ -2,11 +2,61 @@
 {% load static %}
 
 {% block content %}
-<div class="m-3">
-    <h1>Userstats</h1>
+<div class="my-3 mx-3">
+    <h1>Films</h1>
+    <div class="d-flex">
+        <div class="col-3 card mx-3">
+            <div class="card-body">
+                <h5 class="card-title text-primary">Total Views</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Yearly</h6>
+                <div>
+                    <canvas id="total-views-chart"></canvas>
+                </div>
+                <h1 class="card-text text-end">5,000,000</h1>
+            </div>
+        </div>
+        <div class="col-3 card mx-3">
+            <div class="card-body">
+                <h5 class="card-title text-primary">Revenue</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Annual</h6>
+                <div>
+                    <canvas id="revenue-chart"></canvas>
+                </div>
+                <h1 class="card-text text-end">$8,108</h1>
+            </div>
+        </div>
+        <div class="col-3 card mx-3 h-25">
+            <div class="card-body">
+                <h5 class="card-title text-primary">Growth Rate</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Yearly</h6>
+                <h1 class="card-text text-end text-success">79%</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="mx-3 my-5">
+        <div class="px-5 py-5 rounded">
+            <h3 class="text-center">Subscriber count</h3>
+            <canvas id="subscriber-count"></canvas>
+        </div>
+    </div>
+    <div class="d-flex">
+        <div>
+            <!-- Pie Chart -->
+            <div class="card mx-3 p-3">
+                <h6 class="text-center">Traffic Sources</h6>
+                <canvas id="traffic-sources"></canvas>
+            </div>
+            <!-- DataTable -->
+        </div>
+        <div class="col-lg-8">
+            <h1 class="text-center">Most Watched Video</h1>
+            <table id="datatable"></table>
+        </div>
+    </div>  
 </div>
 {% endblock content %}
 
 {% block scripts %}
-<script src="{% static '/js/userstats.js' %}"></script>
+<script src="{% static '/js/index.js' %}"></script>
 {% endblock scripts %}

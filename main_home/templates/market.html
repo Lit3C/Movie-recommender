@@ -1,9 +1,18 @@
 {% extends "layouts/base.html" %}
 {% load static %}
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static '/css/dashboard.css' %}">
+{% endblock stylesheet %}
+
 
 {% block content %}
-<div class="m-3">
-    <h1>Market</h1>
+<div>
+    <!-- Pie Chart -->
+    <div class="mx-3 p-3">
+        <h1 class="text-center">Composition des ménages dans la Creuse</h1>
+        <p>Source : INSEE 2020</p>
+        <div class="market-pie-chart"><canvas id="traffic-sources"></canvas></div>
+    </div>
 </div>
 {% endblock content %}
 
