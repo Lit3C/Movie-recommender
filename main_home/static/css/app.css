@@ -4,11 +4,28 @@
     padding : 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    color:rgb(224, 222, 218);
 }
 .container-base {
-  background-color: red;
+  background-color: #121416;
+}
+/* ------------------------------------ NAVBAR Boostrap----------------------------------------- */
+.form-control-dark {
+  border-color: var(--bs-gray);
+}
+.form-control-dark:focus {
+  border-color: #fff;
+  box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .25);
 }
 
+.text-small {
+  font-size: 75%;
+}
+
+.dropdown-toggle:not(:focus) {
+  outline: 0;
+}
+/* -------------------------------------------------- Header Section -----------*/
 .header-box{
     min-height: 100vh;
     /* border: 1px solid red; */
@@ -33,19 +50,52 @@
 .header-content * {
     margin: 5% 0;
 }
-/* ------------------------------------ NAVBAR ----------------------------------------- */
-.form-control-dark {
-    border-color: var(--bs-gray);
-  }
-  .form-control-dark:focus {
-    border-color: #fff;
-    box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .25);
-  }
-  
-  .text-small {
-    font-size: 75%;
-  }
-  
-  .dropdown-toggle:not(:focus) {
-    outline: 0;
-  }
+  /* -------------------------------------------------- Rating Section -----------*/
+.rating-section{
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  padding: 5% 10%;
+}
+.ratings-container-btn{
+  width: 20%;
+  margin: 2%;
+  padding: 1%;
+}
+.rating-btn{
+  margin: 20% 0%;
+  display: block;
+  width: 100%;
+  height: 45px;
+  background: #e1dfd9;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+  cursor : pointer;
+  font-size : 16px;
+  color: #333;
+  font-weight: 600;
+}
+.rating-btn:hover{
+  background: #fcc236;
+}
+.rating-img {
+  width: 700px;
+}
+/* -------------------------------------------------- AnteChoice Section -----------*/
+.ante-list-section{
+  display: flex;
+}
+.ante-list-elem {
+  display: inline;
+}
+.ante-list-img-back{
+  width: 200px;
+}
+.ante-list-img-current{
+  width: 400px;
+}
+.ante-list-img-next{
+  width: 200px;
+}
