@@ -86,16 +86,33 @@
 /* -------------------------------------------------- AnteChoice Section -----------*/
 .ante-list-section{
   display: flex;
+  /* border: 1px solid blue; */
+  
 }
 .ante-list-elem {
   display: inline;
 }
 .ante-list-img-back{
-  width: 200px;
+  width: 300px;
+  z-index: -1;
 }
 .ante-list-img-current{
-  width: 400px;
+  width: 600px;
+  z-index: 100;
+  left: -100px;
+  position: relative;
+  box-shadow: 0 0 0 .50rem rgba(57, 57, 57, 0.15);
 }
 .ante-list-img-next{
-  width: 200px;
+  position: relative;
+  width: 300px;
+  left: -200px;
+  z-index: -1;
+}
+.ante-list-img-next2{
+  position:absolute;
+  width: 300px;
+  left: 1060px;
+  top:1560px;
+  z-index: -2;
 }
