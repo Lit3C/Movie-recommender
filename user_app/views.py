@@ -13,8 +13,8 @@ def list(request):
 def booking(request):
     return render(request, 'app/booking.html')
 
-def setup(request):
-    return render(request, 'app/setup.html')
+def settings(request):
+    return render(request, 'app/settings.html')
 
 def stats(request):
     return render(request, 'app/stats.html')
