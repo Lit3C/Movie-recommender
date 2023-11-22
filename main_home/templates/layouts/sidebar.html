@@ -1,3 +1,5 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
 <div id="sidebar" class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px; height: 100vh; position: fixed;">
     <a href="/dashboard" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
       <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
@@ -6,7 +8,7 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a href="/dashboard" class="nav-link active" aria-current="page">
+        <a href="/dashboard" class="nav-link text-white active" aria-current="page">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
           Films
         </a>
@@ -45,3 +47,15 @@
       </ul>
     </div>
 </div>
+
+<script>
+  function setActive() {
+    let aObj = document.getElementsByClassName('nav-link');
+    for(let i = 0; i < aObj.length; i++) {
+      if(document.location.href.indexOf("dashboard/" + aObj[i].href.split("dashboard/")[1]) >= 0) {
+        aObj[i].classList.add('active');
+      }
+    }
+  }
+  window.onload = setActive;
+</script>
