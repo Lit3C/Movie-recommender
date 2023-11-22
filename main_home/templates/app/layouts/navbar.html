@@ -1,0 +1,26 @@
+<header class="p-1 text-bg-dark" style="position:fixed;width:100vw;">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start ">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="{% url 'app-index' %}" class="nav-link px-2 text-secondary">Accueil</a></li>
+          <li><a href="{% url 'app-search' %}" class="nav-link px-2 text-white">Rechercher</a></li>
+          <li><a href="{% url 'app-list' %}" class="nav-link px-2 text-white">Ma Vidéothèque</a></li>
+          <li><a href="{% url 'app-booking' %}" class="nav-link px-2 text-white">Mes réservations</a></li>
+          {% comment %} <li><a href="{% url 'app-setup' %}" class="nav-link px-2 text-white">Mon profil</a></li> {% endcomment %}
+        </ul>
+
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+          <input type="search" class="form-control form-control-dark text-bg-light" placeholder="Search..." aria-label="Search">
+        </form>
+
+        <div class="text-end">
+            <a href="../"><button type="button" class="btn btn-outline-light me-2">Logout</button></a>
+            <a href="{% url 'app-setup' %}"><button type="button" class="btn btn-warning">Mon Profil</button></a>
+        </div>
+      </div>
+    </div>
+  </header>
