@@ -6,7 +6,7 @@
     font-family: 'Poppins', sans-serif;
     color:rgb(224, 222, 218);
 }
-.container-base {
+.container-base, body {
   background-color: #121416;
 }
 /* ------------------------------------ NAVBAR Boostrap----------------------------------------- */
@@ -84,7 +84,13 @@
   width: 700px;
 }
 /* -------------------------------------------------- AnteChoice Section -----------*/
-.ante-list-section{
+.ante-list-section {
+  margin: 5% 0%;
+}
+.ante-list-subtitle{
+  margin: 0% 5%;
+}
+.ante-list-container{
   display: flex;
   /* border: 1px solid blue; */
   
@@ -101,11 +107,12 @@
   z-index: 100;
   left: -100px;
   position: relative;
-  box-shadow: 0 0 0 .50rem rgba(57, 57, 57, 0.15);
+  box-shadow: 0 0 0 .30rem rgba(10, 10, 10, 0.6);
 }
 .ante-list-img-next{
   position: relative;
   width: 300px;
+  height: 206px;
   left: -200px;
   z-index: -1;
 }
@@ -113,6 +120,6 @@
   position:absolute;
   width: 300px;
   left: 1060px;
-  top:1560px;
+  top: 1645px;
   z-index: -2;
 }
