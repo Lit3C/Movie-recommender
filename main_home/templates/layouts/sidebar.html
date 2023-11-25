@@ -8,7 +8,7 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a href="/dashboard" class="nav-link text-white active" aria-current="page">
+        <a href="/dashboard" class="nav-link text-white" aria-current="page">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
           Films
         </a>
@@ -49,13 +49,8 @@
 </div>
 
 <script>
-  function setActive() {
-    let aObj = document.getElementsByClassName('nav-link');
-    for(let i = 0; i < aObj.length; i++) {
-      if(document.location.href.indexOf("dashboard/" + aObj[i].href.split("dashboard/")[1]) >= 0) {
-        aObj[i].classList.add('active');
-      }
-    }
-  }
-  window.onload = setActive;
+$(".nav-link").on("click", function(){
+   {% comment %} $(".nav-link").find(".active").removeClass("active"); {% endcomment %}
+   $(this).addClass("active");
+});
 </script>

@@ -1,11 +1,11 @@
 from django.shortcuts import render
 
 # Create your views here.
-def index(request):
+def dashboard(request):
     return render(request, 'dashboard.html')
 
-# def movies(request):
-#     return render(request, 'movies.html')
+def movies(request):
+    return render(request, 'movies.html')
 
 def casting(request):
     return render(request, 'casting.html')
