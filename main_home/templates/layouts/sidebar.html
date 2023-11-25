@@ -8,18 +8,18 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a href="/dashboard" class="nav-link text-white" aria-current="page">
+        <a href="/dashboard/movies" class="nav-link text-white">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
           Films
         </a>
       </li>
-      <li>
+      <li class="nav-item">
         <a href="/dashboard/casting" class="nav-link text-white">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
           Casting
         </a>
       </li>
-      <li>
+      <li class="nav-item">
         <a href="/dashboard/market" class="nav-link text-white">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
           Marché
@@ -49,8 +49,18 @@
 </div>
 
 <script>
-$(".nav-link").on("click", function(){
-   {% comment %} $(".nav-link").find(".active").removeClass("active"); {% endcomment %}
-   $(this).addClass("active");
+  document.addEventListener("DOMContentLoaded", function () {
+    // make all currently active items inactive
+    // (you can delete this block if you know that there are no active items when loading the page)
+    //document.querySelectorAll("a.nav-link.active").forEach(li => {
+    //    li.classList.remove("active");
+    //    li.attributes.removeNamedItem("aria-current");
+    //});
+
+    // find the link to the current page and make it active
+    document.querySelectorAll(`a[href="${location.pathname}"].nav-link`).forEach(a => {
+        a.classList.add("active");
+        a.setAttribute("aria-current", "page");
+    });
 });
 </script>
