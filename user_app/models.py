@@ -10,11 +10,7 @@ import json
 import os
 # Create your models here.
 
-file = pd.read_pickle('table_totale_dum.pickle')
-
-df_knn = pd.get_dummies(file, columns=[
-    'title'
-    ])
+df_knn = pd.read_pickle('table_totale_dum.pickle')
 
 from sklearn.preprocessing import StandardScaler
 def reco_sys(film_name):

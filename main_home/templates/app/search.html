@@ -1,10 +1,15 @@
 {% extends "app/layouts/base.html" %}
 {% load static %}
-{% block stylesheet %}<link rel="stylesheet" href="../../static/css/app.css">{% endblock stylesheet %}
+{% block stylesheet %}<link rel="stylesheet" href="{% static 'css/app.css' %}">{% endblock stylesheet %}
 
 {% block content %}
 <div class="m-5">
-            <h1>Search</h1>
+    <h1>Search</h1>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <input class="form-control form-control-dark" type="text" name="search" placeholder="Entrez votre recherche">
+        <button class="btn btn-warning" type="submit">Rechercher</button>
+    </form>
 </div>
 {% endblock content %}
 
