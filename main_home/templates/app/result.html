@@ -4,16 +4,11 @@
 
 {% block content %}
 <div class="m-5">
-    <h1>Search</h1>
-    <form method="post" action="result">
-        {% csrf_token %}
-        <input id="film-search" class="form-control form-control-dark" type="text" name="film-search" placeholder="Entrez votre recherche">
-        <button class="btn btn-warning" type="submit">Rechercher</button>
-    </form>
+    <h1>Resultat</h1>
     {{film_name}}
     {{closest_films}}
+    {{distances}}
 </div>
-
 {% endblock content %}
 
 {% block scripts %}
