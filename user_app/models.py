@@ -8,9 +8,8 @@ import seaborn as sns
 import pickle
 import json
 import os
-# Create your models here.
 
-df_knn = pd.read_pickle('table_totale_dum.pickle')
+df_knn = pd.read_pickle('user_app/data/table_totale_dum.pickle')
 
 from sklearn.preprocessing import StandardScaler
 def reco_sys(film_name):
