@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+* {
+    margin : 0;
+    padding : 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    color:rgb(224, 222, 218);
+}
+.container-base, body {
+  background-color: #121416;
+}
+/* ------------------------------------ Movies Propal  ----------------------------------------- */
+.movie-container{
+    width: 200px;
+    display: inline-block;
+    position: relative;
+    margin: 10px 5px;
+}
+
+.movie-info {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    box-sizing: border-box;
+}
+
+.movie-container:hover .movie-info{
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.8);
+    transition: opacity 0.3s ease;
+    cursor: help;
+}
+
+.movie-img{
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+}
