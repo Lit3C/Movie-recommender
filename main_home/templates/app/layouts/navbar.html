@@ -1,6 +1,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-<header class="p-1 text-bg-dark" style="position:fixed;width:100vw;">
+<header class="p-1 text-bg-dark" style="position:fixed;width:100vw;z-index:100;">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start ">
         <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
@@ -15,8 +15,9 @@
           {% comment %} <li><a href="{% url 'app-setup' %}" class="nav-link px-2 text-white">Mon profil</a></li> {% endcomment %}
         </ul>
 
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-          <input type="search" class="form-control form-control-dark text-bg-light" placeholder="Search..." aria-label="Search">
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" method="post" action="result">
+          {% csrf_token %}
+          <input id="film-search" type="search" class="form-control form-control-dark text-bg-light" placeholder="Rechercher..." aria-label="Search" name="film-search">
         </form>
 
         <div class="text-end">

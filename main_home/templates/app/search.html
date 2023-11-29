@@ -1,21 +1,107 @@
 {% extends "app/layouts/base.html" %}
 {% load static %}
+{% block title %}Recherche{% endblock title %}
 {% block stylesheet %}<link rel="stylesheet" href="{% static 'css/app.css' %}">{% endblock stylesheet %}
 
 {% block content %}
-<div class="m-5">
-    <h1>Search</h1>
-    <form method="post" action="result">
-        {% csrf_token %}
-        <input id="film-search" class="form-control form-control-dark" type="text" name="film-search" placeholder="Entrez votre recherche">
-        <button class="btn btn-warning" type="submit">Rechercher</button>
-    </form>
-    {{film_name}}
-    {{closest_films}}
+<form class="my-5" role="" method="post" action="search">
+    {% csrf_token %}
+        <input type="text" id="" name="cast" placeholder="Acteur" class="form-control">
+        <input type="text" id="" name="director" placeholder="Réalisateur" class="form-control">
+    <div class="my-5">
+        <select name="genre" id="genre" class="form-control">
+            <option value="">Tous les genres</option>
+            <option value="action">Action</option>
+            <option value="adventure">Adventure</option>
+            <option value="animation">Animation</option>
+            <option value="biography">Biography</option>
+            <option value="comedy">Comedy</option>
+            <option value="crime">Crime</option>
+            <option value="documentary">Documentary</option>
+            <option value="drama">Drama</option>
+            <option value="family">Family</option>
+            <option value="fantasy">Fantasy</option>
+            <option value="film-noir">Film-noir</option>
+            <option value="history">History</option>
+            <option value="horror">Horror</option>
+            <option value="music">Music</option>
+            <option value="musical">Musical</option>
+            <option value="mystery">Mystery</option>
+            <option value="news">News</option>
+            <option value="romance">Romance</option>
+            <option value="sci-fi">Sci-Fi</option>
+            <option value="sport">Sport</option>
+            <option value="thriller">Thriller</option>
+            <option value="war">War</option>
+            <option value="western">Western</option>
+            <option value="inconnu">Autre</option>
+        </select>
+    </div>
+    <div class="my-5">
+        <select name="langue" id="langue" class="form-control">
+            <option value="">Toutes les langues</option>
+            <option value="anglais">Anglais</option>
+            <option value="arabe">Arabe</option>
+            <option value="chinois">Chinois</option>
+            <option value="mandarin">Chinois (mandarin)</option>
+            <option value="taiwan">Chinois (taïwanais)</option>
+            <option value="coreen">Coréen</option>
+            <option value="espagnol">Espagnol</option>
+            <option value="francais">Français</option>
+            <option value="fulfulde">Fulfulde</option>
+            <option value="grec">Grec</option>
+            <option value="hebreu">Hebreu</option>
+            <option value="hindi">Hindi</option>
+            <option value="hongrois">Hongrois</option>
+            <option value="italien">Italien</option>
+            <option value="japonais">Japonais</option>
+            <option value="polonais">Polonais</option>
+            <option value="portugais">Portugais</option>
+            <option value="roumain">Roumain</option>
+            <option value="russe">Russe</option>
+        </select>
+    </div>
+    <div class="my-5">
+        <select name="annee" id="annee" class="form-control">
+            <option value="">Toutes les années</option>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+            <option value="2018">2018</option>
+            <option value="2017">2017</option>
+            <option value="2016">2016</option>
+            <option value="2015">2015</option>
+            <option value="2014">2014</option>
+            <option value="2013">2013</option>
+            <option value="2012">2012</option>
+            <option value="2011">2011</option>
+            <option value="2010">2010</option>
+        </select>
+    </div>
+    <div class="my-5">
+        <select name="duration" id="annee" class="form-control">
+            <option value="">Toutes les durées</option>
+            <option value="0-60 min">0-60 min</option>
+            <option value="60-120 min">60-120 min</option>
+            <option value="au-delà de 120 min">au-delà de 120 min</option>
+        </select>
+    </div>
+</form>
+
+<div class="my-5">
+    {% comment %} <h2>Vous recherchez {{ title_search }}</h2> {% endcomment %}
+    <div class="d-flex align-items-center justify-content-center">
+        <div>
+            <p>Titre Original: {{ originalTitle.0 }}</p>
+            {% comment %} <p>Note : {{ averageRating.0 }} /10 ({{ vote_count.1 }})</p>
+            <p>Année : {{ startYear.0 }}</p>
+            <p>Genre : {{ genres_x.0 }}</p>
+            <p>Durée : {{ runtime.0 }} min</p> {% endcomment %}
+        </div>
+    </div>
 </div>
 
 {% endblock content %}
 
-{% block scripts %}
-{% comment %} <script src="{% static '/js/casting.js' %}"></script> {% endcomment %}
-{% endblock scripts %}
+{% block scripts %}{% endblock scripts %}
