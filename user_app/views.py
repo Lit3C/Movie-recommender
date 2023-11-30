@@ -207,7 +207,7 @@ def filtrer_table(request):
     # data_list = table_totale_brute.to_dict()
     # Paginer les résultats
     page = request.GET.get('page', 1)
-    paginator = Paginator(table_totale_brute, 25)  # nb éléments par page
+    paginator = Paginator(table_totale_brute, 50)  # nb éléments par page
 
     try:
         movies = paginator.page(page)
@@ -217,7 +217,7 @@ def filtrer_table(request):
         movies = paginator.page(paginator.num_pages)
         
     # Passez les données filtrées au modèle
-    table_totale_brute = table_totale_brute.head(100)
+    table_totale_brute = table_totale_brute.head(15)
     context = {
         'movies': movies,
         'filtered_movies' : table_totale_brute,

@@ -9,8 +9,52 @@
 .container-base, body {
   background-color: #121416;
 }
+.main-container{
+    justify-content: center;
+}
 /* ------------------------------------ filtres  ----------------------------------------- */
+.filter-form{
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 80%;
+    background-color: rgba(255, 255, 255, 0.05);
+    border : 2px solid rgba(255,255,255,.1);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px 0 rgba(255, 217, 0, 0.2);
+    padding: 15px;
+    border-radius: 5px;
+}
+
 option {
     background-color: #121416;
     color:rgb(224, 222, 218);
+    width: 20%;
+}
+.select-container{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    margin: 0 auto;
+
+}
+.select-item {
+    display: inline;
+    margin: 0 10px;
+    width: 80%;
+}
+.filter-btn{
+    margin: 3% 10px 0 10px;
+    width: 100%;
+}
+.filter-btn:hover{
+    background-color:rgb(255, 220, 63);
+    border: 2px solid rgb(189, 162, 37);
+}
+.list-img-container{
+    justify-content:space-between;
+    padding: 0 0 0 1%;
+}
+.movie-img{
+    margin: 0.55% .5%;
 }

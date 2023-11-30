@@ -4,150 +4,162 @@
 {% block stylesheet %}<link rel="stylesheet" href="{% static 'css/search.css' %}">{% endblock stylesheet %}
 
 {% block content %}
-<div class="mx-5 my-5">
-    <form method="get" action="{% url 'app-search' %}" class="my-5">
+<div class="mx-5 my-5 main-container">
+    <form method="get" action="{% url 'app-search' %}" class="my-5 filter-form">
         <!-- _____________________________________________________________________________ Genre -->
-        <div class="mx-5 my-5">
-            <label for="genre">Genre:</label>
-            <select name="genre" id="genre" class="form-control">
-                <option value="">Tous les genres</option>
-                <option value="action">Action</option>
-                <option value="adventure">Adventure</option>
-                <option value="animation">Animation</option>
-                <option value="biography">Biography</option>
-                <option value="comedy">Comedy</option>
-                <option value="crime">Crime</option>
-                <option value="documentary">Documentary</option>
-                <option value="drama">Drama</option>
-                <option value="family">Family</option>
-                <option value="fantasy">Fantasy</option>
-                <option value="film-noir">Film-noir</option>
-                <option value="history">History</option>
-                <option value="horror">Horror</option>
-                <option value="music">Music</option>
-                <option value="musical">Musical</option>
-                <option value="mystery">Mystery</option>
-                <option value="news">News</option>
-                <option value="romance">Romance</option>
-                <option value="sci-fi">Sci-Fi</option>
-                <option value="sport">Sport</option>
-                <option value="thriller">Thriller</option>
-                <option value="war">War</option>
-                <option value="western">Western</option>
-                <option value="inconnu">Autre</option>
-            </select>
+        <div class="select-container">
+            <div class="select-item">
+                <label for="genre">Sélectionnez un genre :</label>
+                <select name="genre" id="genre" class="form-control">
+                    <option value="">Tous les genres</option>
+                    <option value="action">Action</option>
+                    <option value="adventure">Adventure</option>
+                    <option value="animation">Animation</option>
+                    <option value="biography">Biography</option>
+                    <option value="comedy">Comedy</option>
+                    <option value="crime">Crime</option>
+                    <option value="documentary">Documentary</option>
+                    <option value="drama">Drama</option>
+                    <option value="family">Family</option>
+                    <option value="fantasy">Fantasy</option>
+                    <option value="film-noir">Film-noir</option>
+                    <option value="history">History</option>
+                    <option value="horror">Horror</option>
+                    <option value="music">Music</option>
+                    <option value="musical">Musical</option>
+                    <option value="mystery">Mystery</option>
+                    <option value="news">News</option>
+                    <option value="romance">Romance</option>
+                    <option value="sci-fi">Sci-Fi</option>
+                    <option value="sport">Sport</option>
+                    <option value="thriller">Thriller</option>
+                    <option value="war">War</option>
+                    <option value="western">Western</option>
+                    <option value="inconnu">Autre</option>
+                </select>
+            </div>
+            <!-- _____________________________________________________________________________ Langue -->
+            <div class="select-item">
+                <label for="genre">Sélectionnez une langue :</label>
+                <select name="langue" id="langue" class="form-control">
+                    <option value="">Toutes les langues</option>
+                    <option value="allemand">Allemand</option>
+                    <option value="amharique">Amharique</option>
+                    <option value="anglais">Anglais</option>
+                    <option value="arabe">Arabe</option>
+                    <option value="biélorusse">Biélorusse</option>
+                    <option value="bulgare">Bulgare</option>
+                    <option value="cn">Chinois</option>
+                    <option value="chinois mandarin">Chinois (mandarin)</option>
+                    <option value="taiwan">Chinois (taïwanais)</option>
+                    <option value="coréen">Coréen</option>
+                    <option value="croate">Croate</option>
+                    <option value="espagnol">Espagnol</option>
+                    <option value="finnois">Finnois</option>
+                    <option value="français">Français</option>
+                    <option value="gallois">Gallois</option>
+                    <option value="grec">Grec</option>
+                    <option value="hindi">Hindi</option>
+                    <option value="hongrois">Hongrois</option>
+                    <option value="italien">Italien</option>
+                    <option value="japonais">Japonais</option>
+                    <option value="khmer">Khmer</option>
+                    <option value="polonais">Polonais</option>
+                    <option value="portugais">Portugais</option>
+                    <option value="roumain">Roumain</option>
+                    <option value="russe">Russe</option>
+                    <option value="serbe">Serbe</option>
+                    <option value="telugu">Telugu</option>
+                    <option value="vietnamien">Vietnamien</option>
+                    <option value="yoruba">Yoruba</option>
+                    <option value="zoulou">Zoulou</option>
+                </select>
+            </div>
+            <!-- _____________________________________________________________________________ Durée -->
+            <div class="select-item">
+                <label for="genre">Sélectionnez une durée du film :</label>
+                <select name="duree_classe" id="annee" class="form-control">
+                    <option value="">Toutes les durées</option>
+                    <option value="0-60 min">0-60 min</option>
+                    <option value="60-120 min">60-120 min</option>
+                    <option value="au-delà de 120 min">au-delà de 120 min</option>
+                </select>
+            </div>
         </div>
-        
-        <!-- _____________________________________________________________________________ Année -->
-        <label for="annee">Année:</label>
-        <input type="text" name="annee" class="form-control form-control-dark text-bg-light">
-
-        <select name="duree_classe" id="annee" class="form-control">
-            <option value="">Toutes les durées</option>
-            <option value="0-60 min">0-60 min</option>
-            <option value="60-120 min">60-120 min</option>
-            <option value="au-delà de 120 min">au-delà de 120 min</option>
-        </select>
-        
-        <!-- _____________________________________________________________________________ Acteur -->
-        <label for="nom_acteur">Nom d'acteur:</label>
-        <input type="text" name="nom_acteur" class="form-control form-control-dark text-bg-light">
-        
-        <!-- _____________________________________________________________________________ Réalisateur -->
-        <label for="realisateur">Réalisateur:</label>
-        <input type="text" name="realisateur" class="form-control form-control-dark text-bg-light">
-        
-        <!-- _____________________________________________________________________________ Note -->
-        <label for="note">Note:</label>
-        <input type="text" name="note" class="form-control form-control-dark text-bg-light">
-        
-        <!-- _____________________________________________________________________________ Langue -->
-        <select name="langue" id="langue" class="form-control">
-            <option value="">Toutes les langues</option>
-            <option value="allemand">Allemand</option>
-            <option value="amharique">Amharique</option>
-            <option value="anglais">Anglais</option>
-            <option value="arabe">Arabe</option>
-            <option value="biélorusse">Biélorusse</option>
-            <option value="bulgare">Bulgare</option>
-            <option value="cn">Chinois</option>
-            <option value="chinois mandarin">Chinois (mandarin)</option>
-            <option value="taiwan">Chinois (taïwanais)</option>
-            <option value="coréen">Coréen</option>
-            <option value="croate">Croate</option>
-            <option value="espagnol">Espagnol</option>
-            <option value="finnois">Finnois</option>
-            <option value="français">Français</option>
-            <option value="gallois">Gallois</option>
-            <option value="grec">Grec</option>
-            <option value="hindi">Hindi</option>
-            <option value="hongrois">Hongrois</option>
-            <option value="italien">Italien</option>
-            <option value="japonais">Japonais</option>
-            <option value="khmer">Khmer</option>
-            <option value="polonais">Polonais</option>
-            <option value="portugais">Portugais</option>
-            <option value="roumain">Roumain</option>
-            <option value="russe">Russe</option>
-            <option value="serbe">Serbe</option>
-            <option value="telugu">Telugu</option>
-            <option value="vietnamien">Vietnamien</option>
-            <option value="yoruba">Yoruba</option>
-            <option value="zoulou">Zoulou</option>
-        </select>
-        
-        <!-- _____________________________________________________________________________ Btn FILTER -->
-        <button type="submit" class="btn btn-warning">Filtrer</button>
+        <div class="select-container">
+            <div class="select-item">
+                <!-- _____________________________________________________________________________ Année -->
+                <label for="annee">Année:</label>
+                <input type="text" name="annee" class="form-control form-control-dark text-bg-light" placeholder="Année">
+                <!-- _____________________________________________________________________________ Note -->
+                <label for="note">Note:</label>
+                <input type="text" name="note" class="form-control form-control-dark text-bg-light" placeholder="Note">
+            </div>
+            <div class="select-item">
+                <!-- _____________________________________________________________________________ Acteur -->
+                <label for="nom_acteur">Nom d'acteur:</label>
+                <input type="text" name="nom_acteur" class="form-control form-control-dark text-bg-light" placeholder="Casting">
+                <!-- _____________________________________________________________________________ Réalisateur -->
+                <label for="realisateur">Réalisateur:</label>
+                <input type="text" name="realisateur" class="form-control form-control-dark text-bg-light" placeholder="Réalisateur">
+            </div>
+        </div>
+        <div class="select-container">
+            <!-- _____________________________________________________________________________ Btn FILTER -->
+            <button type="submit" class="btn btn-warning filter-btn">Filtrer</button>
+        </div>
     </form>
 
   <!-- Pagination -->
-    <div>
-        {% for each in poster_path %}
-            <img class="movie-img" src="https://image.tmdb.org/t/p/w1280{{ each }}" alt="poster" width="200" height="300">
-        {% endfor %}
+    <div class="list-img-container">
+        <div>
+            {% for each in poster_path %}
+                <img class="movie-img" src="https://image.tmdb.org/t/p/w1280{{ each }}" alt="poster" width="200" height="300">
+            {% endfor %}
+        </div>
+
+        <div class="pagination my-5">
+            <span class="step-links">
+            {% if movies.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ movies.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ movies.number }} of {{ movies.paginator.num_pages }}.
+            </span>
+
+            {% if movies.has_next %}
+                <a href="?page={{ movies.next_page_number }}">next</a>
+                <a href="?page={{ movies.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+            </span>
+        </div>
     </div>
-    
+    {% comment %} <div style="border:1px solid yellow;">
+        <div>
+            {% for movie in movies %}
+                <p> {{ movies.primaryTitle }}</p>
+            {% endfor %}
+        </div>
 
-    <div class="pagination my-5">
-        <span class="step-links">
-        {% if movies.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ movies.previous_page_number }}">previous</a>
-        {% endif %}
+        <div class="pagination my-5">
+            <span class="step-links">
+            {% if movies.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ movies.previous_page_number }}">previous</a>
+            {% endif %}
 
-        <span class="current">
-            Page {{ movies.number }} of {{ movies.paginator.num_pages }}.
-        </span>
+            <span class="current">
+                Page {{ movies.number }} of {{ movies.paginator.num_pages }}.
+            </span>
 
-        {% if movies.has_next %}
-            <a href="?page={{ movies.next_page_number }}">next</a>
-            <a href="?page={{ movies.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-        </span>
-    </div>
-
-    {% comment %} <div>
-        {% for movie in movies %}
-            <p> {{ movie }}</p>
-        {% endfor %}
-    </div>
-
-    <div class="pagination my-5">
-        <span class="step-links">
-        {% if movies.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ movies.previous_page_number }}">previous</a>
-        {% endif %}
-
-        <span class="current">
-            Page {{ movies.number }} of {{ movies.paginator.num_pages }}.
-        </span>
-
-        {% if movies.has_next %}
-            <a href="?page={{ movies.next_page_number }}">next</a>
-            <a href="?page={{ movies.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-        </span>
+            {% if movies.has_next %}
+                <a href="?page={{ movies.next_page_number }}">next</a>
+                <a href="?page={{ movies.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+            </span>
+        </div>
     </div> {% endcomment %}
 </div>
 {% endblock content %}
