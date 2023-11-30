@@ -4,7 +4,7 @@
 {% block stylesheet %}<link rel="stylesheet" href="{% static 'css/app.css' %}">{% endblock stylesheet %}
 
 {% block content %}
-<form class="my-5" role="" method="post" action="search">
+<form class="my-5" role="" method="get" action="search">
     {% csrf_token %}
         <input type="text" id="" name="cast" placeholder="Acteur" class="form-control">
         <input type="text" id="" name="director" placeholder="Réalisateur" class="form-control">
@@ -89,18 +89,41 @@
     </div>
 </form>
 
-<div class="my-5">
-    {% comment %} <h2>Vous recherchez {{ title_search }}</h2> {% endcomment %}
+{% comment %} <div class="my-5">
+    <h2>Vous recherchez {{ title_search }}</h2>
     <div class="d-flex align-items-center justify-content-center">
         <div>
             <p>Titre Original: {{ originalTitle.0 }}</p>
-            {% comment %} <p>Note : {{ averageRating.0 }} /10 ({{ vote_count.1 }})</p>
+            <p>Note : {{ averageRating.0 }} /10 ({{ vote_count.1 }})</p>
             <p>Année : {{ startYear.0 }}</p>
             <p>Genre : {{ genres_x.0 }}</p>
-            <p>Durée : {{ runtime.0 }} min</p> {% endcomment %}
+            <p>Durée : {{ runtime.0 }} min</p>
         </div>
     </div>
+</div> {% endcomment %}
+
+{% for movie in movies %}
+    <p style="margin-top:100px, color:white;">Test {{ movie.originalTitle }}</p>
+{% endfor %}
+
+<div class="pagination my-5">
+    <span class="step-links">
+        {% if movies.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ movies.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ movies.number }} of {{ movies.paginator.num_pages }}.
+        </span>
+
+        {% if movies.has_next %}
+            <a href="?page={{ movies.next_page_number }}">next</a>
+            <a href="?page={{ movies.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
 </div>
+
 
 {% endblock content %}
 

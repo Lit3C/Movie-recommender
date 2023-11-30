@@ -11,10 +11,15 @@
         <img class="movie-img" src="https://image.tmdb.org/t/p/w1280{{ poster_path.0 }}" alt="poster" width="200" height="300">
         <div class="mx-5">
             <p>Titre Original: {{ originalTitle.0 }}</p>
-            <p>Note : {{ averageRating.0 }} /10 ({{ vote_count.1 }})</p>
+            <p>Titre Principal: {{ primaryTitle.0 }}</p>
+            <p>Note : {{ averageRating.0 }} /10 ({{ vote_count.0 }})</p>
             <p>Année : {{ startYear.0 }}</p>
             <p>Genre : {{ genres_x.0 }}</p>
             <p>Durée : {{ runtime.0 }} min</p>
+            <p>Description : {{ overview.0 }}</p>
+            <p>Réalisateur : {{ director.0 }}</p>
+            <p>Casting : {{ cast.0 }}</p>
+            <p>Langue Origine : {{ original_language.0 }}</p>
         </div>
     </div>
 </div>
@@ -23,11 +28,15 @@
     <div class="movie-container">
         {% comment %} <a href="" name="film-search" value="{{ originalTitle.1 }}"> {% endcomment %}
         <div class="movie-info">
-            <p>Titre : {{ originalTitle.1 }}</p>
+            <p>Titre Original: {{ originalTitle.1 }}</p>
+            <p>Titre Principal: {{ primaryTitle.1 }}</p>
             <p>Note : {{ averageRating.1 }} /10 ({{ vote_count.1 }})</p>
             <p>Année : {{ startYear.1 }}</p>
             <p>Genre : {{ genres_x.1 }}</p>
             <p>Durée : {{ runtime.1 }} min</p>
+            <p>Réalisateur : {{ director.1 }}</p>
+            <p>Casting : {{ cast.1 }}</p>
+            <p>Langue Origine : {{ original_language.1 }}</p>
         </div>
         <img class="movie-img" src="https://image.tmdb.org/t/p/w1280{{ poster_path.1 }}" alt="poster">
         {% comment %} </a> {% endcomment %}
@@ -171,6 +180,36 @@
             <p>Durée : {{ runtime.15 }} min</p>
         </div>
         <img class="movie-img" src="https://image.tmdb.org/t/p/w1280{{ poster_path.15 }}" alt="poster" width="200" height="300">
+    </div>
+    <div class="movie-container">
+        <div class="movie-info">
+            <p>Titre : {{ originalTitle.16 }}</p>
+            <p>Note : {{ averageRating.16 }} /10 ({{ vote_count.16 }})</p>
+            <p>Année : {{ startYear.16 }}</p>
+            <p>Genre : {{ genres_x.16 }}</p>
+            <p>Durée : {{ runtime.16 }} min</p>
+        </div>
+        <img class="movie-img" src="https://image.tmdb.org/t/p/w1280{{ poster_path.16 }}" alt="poster" width="200" height="300">
+    </div>
+    <div class="movie-container">
+        <div class="movie-info">
+            <p>Titre : {{ originalTitle.17 }}</p>
+            <p>Note : {{ averageRating.17 }} /10 ({{ vote_count.17 }})</p>
+            <p>Année : {{ startYear.17 }}</p>
+            <p>Genre : {{ genres_x.17 }}</p>
+            <p>Durée : {{ runtime.17 }} min</p>
+        </div>
+        <img class="movie-img" src="https://image.tmdb.org/t/p/w1280{{ poster_path.17 }}" alt="poster" width="200" height="300">
+    </div>
+    <div class="movie-container">
+        <div class="movie-info">
+            <p>Titre : {{ originalTitle.18 }}</p>
+            <p>Note : {{ averageRating.18 }} /10 ({{ vote_count.18 }})</p>
+            <p>Année : {{ startYear.18 }}</p>
+            <p>Genre : {{ genres_x.18 }}</p>
+            <p>Durée : {{ runtime.18 }} min</p>
+        </div>
+        <img class="movie-img" src="https://image.tmdb.org/t/p/w1280{{ poster_path.18 }}" alt="poster" width="200" height="300">
     </div>
 </div>
 </div>
