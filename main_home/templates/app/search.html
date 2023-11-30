@@ -119,13 +119,13 @@
             <option value="zoulou">Zoulou</option>
         </select>
 
-        <button type="submit">Filtrer</button>
+        <button type="submit" class="btn btn-warning">Filtrer</button>
     </form>
 
   <!-- Afficher les résultats ici -->
     <div>
-        {% for each in originalTitle %}
-            <p class="my-5">{{ each }}</p>
+        {% for each in poster_path %}
+            <img class="movie-img" src="https://image.tmdb.org/t/p/w1280{{ each }}" alt="poster" width="200" height="300">
         {% endfor %}
     </div>
 

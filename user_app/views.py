@@ -133,100 +133,8 @@ def settings(request):
 def stats(request):
     return render(request, 'app/stats.html')
 
-# table_totale_brute = pd.read_pickle('user_app/data/data_raw.pickle')
-# def filtrer_table(request):
-#     if request.method == 'POST':
-#         # ------------------------------------------------------------------------------------------------ GENRE
-#         # Convertir et formater la colonne 'genres_x'
-#         table_totale_brute['genres_x'] = table_totale_brute['genres_x'].astype(str).str.lower()
-#         # Créer une copie du DataFrame pour éviter de modifier l'original
-#         genre = table_totale_brute.copy()
-#         # Diviser la colonne 'genres_x' en listes
-#         genre['genres_x'] = genre['genres_x'].apply(lambda x: x.split(','))
-#         # Explosion du DataFrame pour traiter les listes de genres
-#         genre_1 = genre.explode('genres_x')
-#         # Remplacer les valeurs NaN dans la colonne 'genres_x' par 'inconnu'
-#         genre_1['genres_x'].replace('nan', 'inconnu', inplace= True)
-#         # Obtenir la liste unique des genres
-#         list_genres = genre_1['genres_x'].unique()
-#         # Saisie manuelle du genre par l'utilisateur
-#         genre_choisi = request.POST['genre']
-#         # Filtrer le DataFrame en fonction du genre choisi
-#         if genre_choisi:
-#             table_totale_brute = genre_1[genre_1['genres_x'] == genre_choisi]
-#         # ------------------------------------------------------------------------------------------------ ANNÉE
-#         # Saisie manuelle de l'année par l'utilisateur
-#         annee_choisie = request.POST['annee']
-#         if annee_choisie:
-#             # Convertir la colonne 'release_date' en datetime
-#             table_totale_brute['release_date'] = pd.to_datetime(table_totale_brute['release_date'], format='%Y-%m-%d')
-#             # Filtrer le DataFrame en fonction de l'année choisie
-#             table_totale_brute = table_totale_brute[table_totale_brute['release_date'].dt.year == int(annee_choisie)]
-#         # ------------------------------------------------------------------------------------------------ DURÉE
-#         # Trier le DataFrame par la colonne 'runtime'
-#         table_totale_brute = table_totale_brute.sort_values(by='runtime')
-#         # Afficher les classes de durée disponibles
-#         classes_de_duree = ['0-60 min', '60-120 min', 'au-delà de 120 min']
-#         print("Classes de durée disponibles :", classes_de_duree)
-#         # Saisie manuelle de la classe de durée par l'utilisateur
-#         duree_classe = request.POST['duration']
-#         if duree_classe:
-#             # Filtrer le DataFrame en fonction de la classe de durée saisie
-#             if duree_classe == '0-60 min':
-#                 table_totale_brute = table_totale_brute[table_totale_brute['runtime'] <= 60]
-#             elif duree_classe == '60-120 min':
-#                 table_totale_brute = table_totale_brute[(table_totale_brute['runtime'] > 60) & (table_totale_brute['runtime'] <= 120)]
-#             elif duree_classe == 'au-delà de 120 min':
-#                 table_totale_brute = table_totale_brute[table_totale_brute['runtime'] > 120]
-#         # ------------------------------------------------------------------------------------------------ ACTEUR/RÉALISATEUR
-#         # Choix de l'acteur
-#         nom_acteur_choisi = request.POST['cast']
-#         nom_acteur_choisi = nom_acteur_choisi.lower()
-#         if nom_acteur_choisi:
-#             # Filtrer les données pour l'acteur choisi dans la colonne 'cast'
-#             table_totale_brute = table_totale_brute[table_totale_brute['cast'].str.lower().str.contains(nom_acteur_choisi, na=False)]
-#         # Choix du réalisateur
-#         realisateur_choisi = request.POST['director']
-#         realisateur_choisi = realisateur_choisi.lower()
-#         if realisateur_choisi:
-#             # Filtrer les données pour le réalisateur choisi dans la colonne 'directors'
-#             table_totale_brute = table_totale_brute[table_totale_brute['director'].str.lower().str.contains(realisateur_choisi, na=False)]
-#         #  ------------------------------------------------------------------------------------------------ NOTE
-#         note_choisie = request.POST['note']  # faire des classes de valeurs
-#         if note_choisie:
-#             # la colonne 'vote_average' a le même type que la valeur entrée
-#             table_totale_brute['vote_average'] = table_totale_brute['vote_average'].astype(float)
-#             # Filtrer les données pour la note choisie
-#             table_totale_brute = table_totale_brute[table_totale_brute['vote_average'] == float(note_choisie)]
-#         # ------------------------------------------------------------------------------------------------ LANGUE
-#         # Saisie manuelle de la langue par l'utilisateur
-#         langue_choisie = request.POST['langue']
-#         if langue_choisie:
-#             table_totale_brute = table_totale_brute.loc[table_totale_brute['original_language'] == langue_choisie]
-#         # return table_totale_brute
-#         context = {
-#             'originalTitle': table_totale_brute['originalTitle'].values.tolist(),
-#             'primaryTitle': table_totale_brute['primaryTitle'].values.tolist(),
-#             'averageRating': table_totale_brute['averageRating'].values.tolist(),
-#             'vote_count': table_totale_brute['vote_count'].values.tolist(),
-#             'startYear': table_totale_brute['startYear'].values.tolist(),
-#             'genres_x': table_totale_brute['genres_x'].values.tolist(),
-#             'runtime': table_totale_brute['runtime'].values.tolist(),
-#             'overview': table_totale_brute['overview'].values.tolist(),
-#             'cast': table_totale_brute['cast'].values.tolist(),
-#             'director': table_totale_brute['Director'].values.tolist(),
-#             'original_language': table_totale_brute['original_language'].values.tolist(),
-#             'poster_path': table_totale_brute['poster_path'].values.tolist(),
-#         }
-#         print(genre_choisi)
-#         print(realisateur_choisi)
-#         print(f"type de genre_choisi : {type(context['genres_x'])}")
-#         return render(request, 'app/search.html', context)
-
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def filtrer_table(request):
-    # Charger les données depuis le fichier Pickle
-    # data = load_data_from_pickle('user_app/data/data_raw.pickle')
     table_totale_brute = pd.DataFrame(df_raw)
 
     # Récupérer les paramètres de filtre depuis la requête GET
@@ -257,7 +165,7 @@ def filtrer_table(request):
         table_totale_brute = table_totale_brute[table_totale_brute['cast'].str.lower().str.contains(nom_acteur_choisi, na=False)]
     # Filtrer les données pour le réalisateur choisi dans la colonne 'directors'
     if realisateur_choisi:
-        table_totale_brute = table_totale_brute[table_totale_brute['director'].str.lower().str.contains(realisateur_choisi, na=False)]
+        table_totale_brute = table_totale_brute[table_totale_brute['Director'].str.lower().str.contains(realisateur_choisi, na=False)]
     # Filtrer les données pour la note choisie
     if note_choisie:
         table_totale_brute['vote_average'] = table_totale_brute['vote_average'].astype(float)
@@ -281,6 +189,17 @@ def filtrer_table(request):
         'movies': movies,
         'filtered_movies' : table_totale_brute,
         'originalTitle' : table_totale_brute["originalTitle"].values.tolist(),
+        'primaryTitle': table_totale_brute['primaryTitle'].values.tolist(),
+        'averageRating': table_totale_brute['averageRating'].values.tolist(),
+        'vote_count': table_totale_brute['vote_count'].values.tolist(),
+        'startYear': table_totale_brute['startYear'].values.tolist(),
+        'genres_x': table_totale_brute['genres_x'].values.tolist(),
+        'runtime': table_totale_brute['runtime'].values.tolist(),
+        'overview': table_totale_brute['overview'].values.tolist(),
+        'cast': table_totale_brute['cast'].values.tolist(),
+        'director': table_totale_brute['Director'].values.tolist(),
+        'original_language': table_totale_brute['original_language'].values.tolist(),
+        'poster_path': table_totale_brute['poster_path'].values.tolist(),
             }    
     print(f"Genre choisi : {genre_choisi}")
     print(f"Année choisi : {annee_choisie}")
