@@ -26,7 +26,6 @@
 <div class="my-5">
     <h2>Vous pourriez aussi être intéressé(e) par :</h2>
     <div class="movie-container">
-        {% comment %} <a href="" name="film-search" value="{{ originalTitle.1 }}"> {% endcomment %}
         <div class="movie-info">
             <p>Titre Original: {{ originalTitle.1 }}</p>
             <p>Titre Principal: {{ primaryTitle.1 }}</p>
@@ -39,7 +38,6 @@
             <p>Langue Origine : {{ original_language.1 }}</p>
         </div>
         <img class="movie-img" src="https://image.tmdb.org/t/p/w1280{{ poster_path.1 }}" alt="poster">
-        {% comment %} </a> {% endcomment %}
     </div>
     <div class="movie-container">
         <div class="movie-info">
@@ -217,7 +215,7 @@
 {% endblock content %}
 
 {% block scripts %}
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+{% comment %} <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
     $(document).ready(function() {
         // Attachez un gestionnaire d'événement au clic sur la div
@@ -238,7 +236,7 @@
             });
         });
     });
-</script>
+</script> {% endcomment %}
 
 
 {% endblock scripts %}

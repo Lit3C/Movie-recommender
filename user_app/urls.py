@@ -7,7 +7,6 @@ from . import models
 urlpatterns = [
     path('', views.index, name='app-index'),
     path('result', views.reco_sys, name='app-result'),
-    path('result', views.reco_sys_click, name='app-result-click'),
     path('search', views.filtrer_table, name='app-search'),
     path('list', views.lst, name='app-list'),
     path('booking', views.booking, name='app-booking'),

@@ -15,36 +15,138 @@ def index(request):
 def search(request):
     return render(request, 'app/search.html')
 
-df_raw = pd.read_pickle('user_app/data/data_raw.pickle')
+def lst(request):
+    return render(request, 'app/list.html')
+
+def booking(request):
+    return render(request, 'app/booking.html')
+
+def settings(request):
+    return render(request, 'app/settings.html')
+
+def stats(request):
+    return render(request, 'app/stats.html')
+
+# --------------------------------------------------------------------------------------------Read Pickle
+table_finale_dummies_3 = pd.read_pickle('user_app/data/data_raw.pickle')
+
+# --------------------------------------------------------------------------------------------Fonction ML
 from sklearn.preprocessing import StandardScaler
 def reco_sys(request):
     print(request)
     if request.method == 'POST':
-        title_search = request.POST['film-search']
+        film_name = request.POST['film-search']
         print("HellooooWorld")
-        print(title_search)
-        film_name_contains = df_raw['originalTitle'].str.contains(title_search, case= False)
+        print(film_name)
+        
+        film_name_contains_original = table_finale_dummies_3['originalTitle'].str.contains(film_name, case=False)
+        film_name_contains_dir = table_finale_dummies_3['Director'].str.contains(film_name, case=False)
+        film_name_contains_actor_1 = table_finale_dummies_3['actor_1'].str.contains(film_name, case=False)
+        film_name_contains_actor_2 = table_finale_dummies_3['actor_2'].str.contains(film_name, case=False)
+        film_name_contains_actor_3 = table_finale_dummies_3['actor_3'].str.contains(film_name, case=False)
+        film_name_contains_actor_4 = table_finale_dummies_3['actor_4'].str.contains(film_name, case=False)
+        film_name_contains_genres = table_finale_dummies_3['genres_x'].str.contains(film_name, case=False)
+        film_name_contains_over = table_finale_dummies_3['overview'].str.contains(film_name, case=False)
 
-        X = df_raw.drop(columns = ['tconst', 'primaryTitle', 'vote_count', 'vote_average', 'originalTitle', 'genres_x','runtime', 'overview', 'cast',
-        'Director', 'original_language', 'poster_path', 'startYear', 'budget', 'num_genres', 'revenue', 'ratio_votes'])
+        if film_name_contains_dir.any():
+            X = table_finale_dummies_3.drop(columns=['tconst', 'primaryTitle', 'averageRating', 'vote_count', 'vote_average',
+                                                    'revenue', 'budget', 'num_genres', 'Action', 'Adventure', 'Animation',
+                                                    'Biography', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Family',
+                                                    'Fantasy', 'Film-Noir', 'History', 'Horror', 'Music', 'Musical',
+                                                    'Mystery', 'News', 'Romance', 'Sci-Fi', 'Sport', 'Thriller', 'War',
+                                                    'Western', 'inconnu', 'ratio_votes', 'originalTitle', 'startYear',
+                                                    'genres_x', 'runtime', 'overview', 'original_language', 'poster_path',
+                                                    'language_fact', 'Director', 'cast', 'actor_1_fact', 'actor_2_fact',
+                                                    'actor_3_fact', 'actor_4_fact', 'genres_fact', 'actor_1', 'actor_2',
+                                                    'actor_3', 'actor_4'])
+            film_features = table_finale_dummies_3.loc[film_name_contains_dir, X.columns]
 
-        film_features = df_raw.loc[film_name_contains, X.columns]
+
+        elif film_name_contains_original.any():
+            X = table_finale_dummies_3.drop(columns=['tconst', 'primaryTitle', 'vote_count', 'vote_average', 'originalTitle', 'genres_x','runtime', 'overview', 'cast',
+                                                    'Director', 'original_language', 'poster_path', 'startYear', 'budget', 'num_genres', 'revenue', 'ratio_votes', 'averageRating', 'actor_1', 'actor_2',
+                                                    'actor_3', 'actor_4'])
+            film_features = table_finale_dummies_3.loc[film_name_contains_original, X.columns]
+
+
+
+        elif film_name_contains_actor_1.any():
+            X = table_finale_dummies_3.drop(columns=['tconst', 'primaryTitle', 'averageRating', 'vote_count', 'vote_average',
+                                                    'revenue', 'budget', 'num_genres', 'Action', 'Adventure', 'Animation',
+                                                    'Biography', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Family',
+                                                    'Fantasy', 'Film-Noir', 'History', 'Horror', 'Music', 'Musical',
+                                                    'Mystery', 'News', 'Romance', 'Sci-Fi', 'Sport', 'Thriller', 'War',
+                                                    'Western', 'inconnu', 'ratio_votes', 'originalTitle', 'startYear',
+                                                    'genres_x', 'runtime', 'overview', 'original_language', 'poster_path',
+                                                    'language_fact', 'Director', 'cast', 'actor_1', 'actor_2', 'actor_3',
+                                                    'actor_4', 'actor_2_fact', 'actor_3_fact',
+                                                    'actor_4_fact', 'director_fact', 'genres_fact'])
+            film_features = table_finale_dummies_3.loc[film_name_contains_actor_1, X.columns]
+
+        elif film_name_contains_actor_2.any():
+            X = table_finale_dummies_3.drop(columns=['tconst', 'primaryTitle', 'averageRating', 'vote_count', 'vote_average',
+                                                    'revenue', 'budget', 'num_genres', 'Action', 'Adventure', 'Animation',
+                                                    'Biography', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Family',
+                                                    'Fantasy', 'Film-Noir', 'History', 'Horror', 'Music', 'Musical',
+                                                    'Mystery', 'News', 'Romance', 'Sci-Fi', 'Sport', 'Thriller', 'War',
+                                                    'Western', 'inconnu', 'ratio_votes', 'originalTitle', 'startYear',
+                                                    'genres_x', 'runtime', 'overview', 'original_language', 'poster_path',
+                                                    'language_fact', 'Director', 'cast', 'actor_1', 'actor_2', 'actor_3',
+                                                    'actor_4', 'actor_1_fact', 'actor_3_fact',
+                                                    'actor_4_fact', 'director_fact', 'genres_fact'])
+            film_features = table_finale_dummies_3.loc[film_name_contains_actor_2, X.columns]
+
+        elif film_name_contains_actor_3.any():
+            X = table_finale_dummies_3.drop(columns=['tconst', 'primaryTitle', 'averageRating', 'vote_count', 'vote_average',
+                                                    'revenue', 'budget', 'num_genres', 'Action', 'Adventure', 'Animation',
+                                                    'Biography', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Family',
+                                                    'Fantasy', 'Film-Noir', 'History', 'Horror', 'Music', 'Musical',
+                                                    'Mystery', 'News', 'Romance', 'Sci-Fi', 'Sport', 'Thriller', 'War',
+                                                    'Western', 'inconnu', 'ratio_votes', 'originalTitle', 'startYear',
+                                                    'genres_x', 'runtime', 'overview', 'original_language', 'poster_path',
+                                                    'language_fact', 'Director', 'cast', 'actor_1', 'actor_2', 'actor_3',
+                                                    'actor_4', 'actor_1_fact', 'actor_2_fact',
+                                                    'actor_4_fact', 'director_fact', 'genres_fact'])
+            film_features = table_finale_dummies_3.loc[film_name_contains_actor_3, X.columns]
+
+        elif film_name_contains_actor_4.any():
+            X = table_finale_dummies_3.drop(columns=['tconst', 'primaryTitle', 'averageRating', 'vote_count', 'vote_average',
+                                                    'revenue', 'budget', 'num_genres', 'Action', 'Adventure', 'Animation',
+                                                    'Biography', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Family',
+                                                    'Fantasy', 'Film-Noir', 'History', 'Horror', 'Music', 'Musical',
+                                                    'Mystery', 'News', 'Romance', 'Sci-Fi', 'Sport', 'Thriller', 'War',
+                                                    'Western', 'inconnu', 'ratio_votes', 'originalTitle', 'startYear',
+                                                    'genres_x', 'runtime', 'overview', 'original_language', 'poster_path',
+                                                    'language_fact', 'Director', 'cast', 'actor_1', 'actor_2', 'actor_3',
+                                                    'actor_4', 'actor_1_fact', 'actor_2_fact', 'actor_3_fact',
+                                                    'director_fact', 'genres_fact'])
+            film_features = table_finale_dummies_3.loc[film_name_contains_actor_4, X.columns]
+
+        elif film_name_contains_over.any():
+            X = table_finale_dummies_3.drop(columns=['tconst', 'primaryTitle', 'vote_count', 'vote_average', 'originalTitle', 'genres_x','runtime', 'overview', 'cast',
+                                                    'Director', 'original_language', 'poster_path', 'startYear', 'budget', 'num_genres', 'revenue', 'ratio_votes', 'averageRating', 'actor_1', 'actor_2',
+                                                    'actor_3', 'actor_4'])
+            film_features = table_finale_dummies_3.loc[film_name_contains_over, X.columns]
+
+        else:
+            print(f'Film, Director ou Comédien {film_name} non disponible.')
+            return
 
         scaler = StandardScaler()
         X_scaled = scaler.fit_transform(X)
         film_features_scaled = scaler.transform(film_features)
 
-        model_films = NearestNeighbors(n_neighbors= 19)
+        model_films = NearestNeighbors(n_neighbors=19)
         model_films.fit(X_scaled)
 
         neighbors = model_films.kneighbors(film_features_scaled)
 
         closest_films_index = neighbors[1][0]
-        closest_films = df_raw[['originalTitle', 'primaryTitle', 'averageRating', 'vote_count', 'startYear', 'genres_x', 'runtime', 'overview', 'cast', 'Director', 'original_language', 'poster_path']].iloc[closest_films_index]
+        closest_films = table_finale_dummies_3[['originalTitle', 'primaryTitle', 'averageRating', 'vote_count', 'startYear', 'genres_x', 'runtime', 'overview', 'cast', 'Director', 'original_language', 'poster_path']].iloc[closest_films_index]
         distances = neighbors[0][0]
 
         context = {
-            'title_search': title_search, 
+            'title_search': film_name, 
             'originalTitle': closest_films['originalTitle'].values.tolist(),
             'primaryTitle': closest_films['primaryTitle'].values.tolist(),
             'averageRating': closest_films['averageRating'].values.tolist(),
@@ -61,81 +163,10 @@ def reco_sys(request):
         }
     return render(request, 'app/result.html', context)
 
-def reco_sys_click(request):
-    print(request)
-    if request.method == 'POST':
-        title_search = request.POST['film-search']
-        print("HellooooWorld")
-        print(title_search)
-        title_search_contains = df_raw['originalTitle'].str.contains(title_search, case= False)
-
-        X = df_raw.drop(columns = ['tconst', 'primaryTitle', 'director_x', 'vote_count', 'vote_average', 'originalTitle', 'genres_x','runtime', 'overview', 'cast',
-        'Director', 'original_language', 'poster_path', 'startYear', 'budget', 'num_genres', 'revenue', 'actor_1', 'actor_2', 'actor_3', 'actor_4', 'actor_3_fact', 'actor_4_fact', 'director_fact'])
-
-        film_features = df_raw.loc[title_search_contains, X.columns]
-
-        scaler = StandardScaler()
-        X_scaled = scaler.fit_transform(X)
-        film_features_scaled = scaler.transform(film_features)
-
-        model_films = NearestNeighbors(n_neighbors= 19)
-        model_films.fit(X_scaled)
-
-        neighbors = model_films.kneighbors(film_features_scaled)
-
-        closest_films_index = neighbors[1][0]
-        closest_films = df_raw[[
-            'originalTitle',
-            'primaryTitle',
-            'averageRating',
-            'vote_count',
-            'startYear',
-            'genres_x',
-            'runtime',
-            'overview',
-            'cast',
-            'Director',
-            'original_language',
-            'poster_path'
-            ]].iloc[closest_films_index]
-        distances = neighbors[0][0]
-
-        context = {
-            'title_search': title_search, 
-            'originalTitle': closest_films['originalTitle'].values.tolist(),
-            'primaryTitle': closest_films['primaryTitle'].values.tolist(),
-            'averageRating': closest_films['averageRating'].values.tolist(),
-            'vote_count': closest_films['vote_count'].values.tolist(),
-            'startYear': closest_films['startYear'].values.tolist(),
-            'genres_x': closest_films['genres_x'].values.tolist(),
-            'runtime': closest_films['runtime'].values.tolist(),
-            'overview': closest_films['overview'].values.tolist(),
-            'cast': closest_films['cast'].values.tolist(),
-            'director': closest_films['Director'].values.tolist(),
-            'original_language': closest_films['original_language'].values.tolist(),
-            'poster_path': closest_films['poster_path'].values.tolist(),
-            'distances': distances
-        }
-        data = {'message': 'La fonction Python a été exécutée avec succès.'}
-    return render(request, 'app/result.html', context), JsonResponse(data)
-    
-    
-
-def lst(request):
-    return render(request, 'app/list.html')
-
-def booking(request):
-    return render(request, 'app/booking.html')
-
-def settings(request):
-    return render(request, 'app/settings.html')
-
-def stats(request):
-    return render(request, 'app/stats.html')
-
+# --------------------------------------------------------------------------------------------Fonction FILTRE
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def filtrer_table(request):
-    table_totale_brute = pd.DataFrame(df_raw)
+    table_totale_brute = pd.DataFrame(table_finale_dummies_3)
 
     # Récupérer les paramètres de filtre depuis la requête GET
     genre_choisi = request.GET.get('genre', '')
