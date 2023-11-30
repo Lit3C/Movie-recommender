@@ -3,12 +3,41 @@
 {% block title %}Recherche{% endblock title %}
 {% block stylesheet %}<link rel="stylesheet" href="{% static 'css/app.css' %}">{% endblock stylesheet %}
 
-{% block content %}
+{% comment %} {% block content %}
 <form class="my-5" role="" method="get" action="search">
     {% csrf_token %}
         <input type="text" id="" name="cast" placeholder="Acteur" class="form-control">
         <input type="text" id="" name="director" placeholder="Réalisateur" class="form-control">
     <div class="my-5">
+        <select name="langue" id="langue" class="form-control">
+            <option value="">Toutes les langues</option>
+            <option value="anglais">Anglais</option>
+            <option value="arabe">Arabe</option>
+            <option value="chinois">Chinois</option>
+            <option value="mandarin">Chinois (mandarin)</option>
+            <option value="taiwan">Chinois (taïwanais)</option>
+            <option value="coreen">Coréen</option>
+            <option value="espagnol">Espagnol</option>
+            <option value="francais">Français</option>
+            <option value="fulfulde">Fulfulde</option>
+            <option value="grec">Grec</option>
+            <option value="hebreu">Hebreu</option>
+            <option value="hindi">Hindi</option>
+            <option value="hongrois">Hongrois</option>
+            <option value="italien">Italien</option>
+            <option value="japonais">Japonais</option>
+            <option value="polonais">Polonais</option>
+            <option value="portugais">Portugais</option>
+            <option value="roumain">Roumain</option>
+            <option value="russe">Russe</option>
+        </select>
+    </div>
+</form> {% endcomment %}
+
+{% block content %}
+<div class="mx-5 my-5">
+    <form method="get" action="{% url 'app-search' %}" class="my-5">
+        <label for="genre">Genre:</label>
         <select name="genre" id="genre" class="form-control">
             <option value="">Tous les genres</option>
             <option value="action">Action</option>
@@ -36,78 +65,72 @@
             <option value="western">Western</option>
             <option value="inconnu">Autre</option>
         </select>
-    </div>
-    <div class="my-5">
-        <select name="langue" id="langue" class="form-control">
-            <option value="">Toutes les langues</option>
-            <option value="anglais">Anglais</option>
-            <option value="arabe">Arabe</option>
-            <option value="chinois">Chinois</option>
-            <option value="mandarin">Chinois (mandarin)</option>
-            <option value="taiwan">Chinois (taïwanais)</option>
-            <option value="coreen">Coréen</option>
-            <option value="espagnol">Espagnol</option>
-            <option value="francais">Français</option>
-            <option value="fulfulde">Fulfulde</option>
-            <option value="grec">Grec</option>
-            <option value="hebreu">Hebreu</option>
-            <option value="hindi">Hindi</option>
-            <option value="hongrois">Hongrois</option>
-            <option value="italien">Italien</option>
-            <option value="japonais">Japonais</option>
-            <option value="polonais">Polonais</option>
-            <option value="portugais">Portugais</option>
-            <option value="roumain">Roumain</option>
-            <option value="russe">Russe</option>
-        </select>
-    </div>
-    <div class="my-5">
-        <select name="annee" id="annee" class="form-control">
-            <option value="">Toutes les années</option>
-            <option value="2022">2022</option>
-            <option value="2021">2021</option>
-            <option value="2020">2020</option>
-            <option value="2019">2019</option>
-            <option value="2018">2018</option>
-            <option value="2017">2017</option>
-            <option value="2016">2016</option>
-            <option value="2015">2015</option>
-            <option value="2014">2014</option>
-            <option value="2013">2013</option>
-            <option value="2012">2012</option>
-            <option value="2011">2011</option>
-            <option value="2010">2010</option>
-        </select>
-    </div>
-    <div class="my-5">
-        <select name="duration" id="annee" class="form-control">
+
+        <label for="annee">Année:</label>
+        <input type="text" name="annee">
+
+        <select name="duree_classe" id="annee" class="form-control">
             <option value="">Toutes les durées</option>
             <option value="0-60 min">0-60 min</option>
             <option value="60-120 min">60-120 min</option>
             <option value="au-delà de 120 min">au-delà de 120 min</option>
         </select>
+        
+        <label for="nom_acteur">Nom d'acteur:</label>
+        <input type="text" name="nom_acteur">
+
+        <label for="realisateur">Réalisateur:</label>
+        <input type="text" name="realisateur">
+
+        <label for="note">Note:</label>
+        <input type="text" name="note">
+
+        <select name="langue" id="langue" class="form-control">
+            <option value="">Toutes les langues</option>
+            <option value="allemand">Allemand</option>
+            <option value="amharique">Amharique</option>
+            <option value="anglais">Anglais</option>
+            <option value="arabe">Arabe</option>
+            <option value="biélorusse">Biélorusse</option>
+            <option value="bulgare">Bulgare</option>
+            <option value="cn">Chinois</option>
+            <option value="chinois mandarin">Chinois (mandarin)</option>
+            <option value="taiwan">Chinois (taïwanais)</option>
+            <option value="coréen">Coréen</option>
+            <option value="croate">Croate</option>
+            <option value="espagnol">Espagnol</option>
+            <option value="finnois">Finnois</option>
+            <option value="français">Français</option>
+            <option value="gallois">Gallois</option>
+            <option value="grec">Grec</option>
+            <option value="hindi">Hindi</option>
+            <option value="hongrois">Hongrois</option>
+            <option value="italien">Italien</option>
+            <option value="japonais">Japonais</option>
+            <option value="khmer">Khmer</option>
+            <option value="polonais">Polonais</option>
+            <option value="portugais">Portugais</option>
+            <option value="roumain">Roumain</option>
+            <option value="russe">Russe</option>
+            <option value="serbe">Serbe</option>
+            <option value="telugu">Telugu</option>
+            <option value="vietnamien">Vietnamien</option>
+            <option value="yoruba">Yoruba</option>
+            <option value="zoulou">Zoulou</option>
+        </select>
+
+        <button type="submit">Filtrer</button>
+    </form>
+
+  <!-- Afficher les résultats ici -->
+    <div>
+        {% for each in originalTitle %}
+            <p class="my-5">{{ each }}</p>
+        {% endfor %}
     </div>
-</form>
 
-{% comment %} <div class="my-5">
-    <h2>Vous recherchez {{ title_search }}</h2>
-    <div class="d-flex align-items-center justify-content-center">
-        <div>
-            <p>Titre Original: {{ originalTitle.0 }}</p>
-            <p>Note : {{ averageRating.0 }} /10 ({{ vote_count.1 }})</p>
-            <p>Année : {{ startYear.0 }}</p>
-            <p>Genre : {{ genres_x.0 }}</p>
-            <p>Durée : {{ runtime.0 }} min</p>
-        </div>
-    </div>
-</div> {% endcomment %}
-
-{% for movie in movies %}
-    <p style="margin-top:100px, color:white;">Test {{ movie.originalTitle }}</p>
-{% endfor %}
-
-<div class="pagination my-5">
-    <span class="step-links">
+    <div class="pagination my-5">
+        <span class="step-links">
         {% if movies.has_previous %}
             <a href="?page=1">&laquo; first</a>
             <a href="?page={{ movies.previous_page_number }}">previous</a>
@@ -121,10 +144,9 @@
             <a href="?page={{ movies.next_page_number }}">next</a>
             <a href="?page={{ movies.paginator.num_pages }}">last &raquo;</a>
         {% endif %}
-    </span>
+        </span>
+    </div>
 </div>
-
-
 {% endblock content %}
 
 {% block scripts %}{% endblock scripts %}

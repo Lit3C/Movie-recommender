@@ -224,19 +224,51 @@ def stats(request):
 #         return render(request, 'app/search.html', context)
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-def movie_list(request):
+def filtrer_table(request):
     # Charger les données depuis le fichier Pickle
     # data = load_data_from_pickle('user_app/data/data_raw.pickle')
+    table_totale_brute = pd.DataFrame(df_raw)
 
-    # Appliquer les filtres (par exemple, par genre ou par note)
-    genre_filter = request.GET.get('genre')
-    # note_filter = request.GET.get('note')
+    # Récupérer les paramètres de filtre depuis la requête GET
+    genre_choisi = request.GET.get('genre', '')
+    annee_choisie = request.GET.get('annee', '')
+    duree_classe = request.GET.get('duree_classe', '')
+    nom_acteur_choisi = request.GET.get('nom_acteur', '').lower()
+    realisateur_choisi = request.GET.get('realisateur', '').lower()
+    note_choisie = request.GET.get('note', '')
+    langue_choisie = request.GET.get('langue', '')
 
-    filtered_data = df_raw  # Appliquez vos filtres ici en fonction de votre structure de données
+    # Filtrer le DataFrame en fonction des paramètres de la requête
+    if genre_choisi:
+        table_totale_brute = table_totale_brute[table_totale_brute['genres_x'].str.contains(genre_choisi, case=False)]
 
+    if annee_choisie:
+        table_totale_brute = table_totale_brute[table_totale_brute['startYear'] == str(annee_choisie)]
+    # Filtrer le DataFrame en fonction de la classe de durée saisie
+    if duree_classe:
+        if duree_classe == '0-60 min':
+            table_totale_brute = table_totale_brute[table_totale_brute['runtime'] <= 60]
+        elif duree_classe == '60-120 min':
+            table_totale_brute = table_totale_brute[(table_totale_brute['runtime'] > 60) & (table_totale_brute['runtime'] <= 120)]
+        elif duree_classe == 'au-delà de 120 min':
+            table_totale_brute = table_totale_brute[table_totale_brute['runtime'] > 120]
+    # Filtrer les données pour l'acteur choisi dans la colonne 'cast'
+    if nom_acteur_choisi:
+        table_totale_brute = table_totale_brute[table_totale_brute['cast'].str.lower().str.contains(nom_acteur_choisi, na=False)]
+    # Filtrer les données pour le réalisateur choisi dans la colonne 'directors'
+    if realisateur_choisi:
+        table_totale_brute = table_totale_brute[table_totale_brute['director'].str.lower().str.contains(realisateur_choisi, na=False)]
+    # Filtrer les données pour la note choisie
+    if note_choisie:
+        table_totale_brute['vote_average'] = table_totale_brute['vote_average'].astype(float)
+        table_totale_brute = table_totale_brute[table_totale_brute['vote_average'] == float(note_choisie)]    
+    if langue_choisie:
+        table_totale_brute = table_totale_brute.loc[table_totale_brute['original_language'] == langue_choisie]
+        
     # Paginer les résultats
     page = request.GET.get('page', 1)
-    paginator = Paginator(filtered_data, 25)  # nb éléments par page
+    paginator = Paginator(table_totale_brute, 10)  # nb éléments par page
+
     try:
         movies = paginator.page(page)
     except PageNotAnInteger:
@@ -244,19 +276,21 @@ def movie_list(request):
     except EmptyPage:
         movies = paginator.page(paginator.num_pages)
         
+    # Passez les données filtrées au modèle
     context = {
-            'originalTitle': filtered_data['originalTitle'].values.tolist(),
-            'primaryTitle': filtered_data['primaryTitle'].values.tolist(),
-            'averageRating': filtered_data['averageRating'].values.tolist(),
-            'vote_count': filtered_data['vote_count'].values.tolist(),
-            'startYear': filtered_data['startYear'].values.tolist(),
-            'genres_x': filtered_data['genres_x'].values.tolist(),
-            'runtime': filtered_data['runtime'].values.tolist(),
-            'overview': filtered_data['overview'].values.tolist(),
-            'cast': filtered_data['cast'].values.tolist(),
-            'director': filtered_data['Director'].values.tolist(),
-            'original_language': filtered_data['original_language'].values.tolist(),
-            'poster_path': filtered_data['poster_path'].values.tolist(),
-        }
-    print(filtered_data)
-    return render(request, 'app/search.html', {'movies': movies}, context)
+        'movies': movies,
+        'filtered_movies' : table_totale_brute,
+        'originalTitle' : table_totale_brute["originalTitle"].values.tolist(),
+            }    
+    print(f"Genre choisi : {genre_choisi}")
+    print(f"Année choisi : {annee_choisie}")
+    print(f"Durée choisi : {duree_classe}")
+    print(f"Nom Acteur choisi : {nom_acteur_choisi}")
+    print(f"Réalisateur choisi : {realisateur_choisi}")
+    print(f"Note choisi : {note_choisie}")
+    print(f"Langue choisi : {langue_choisie}")
+    print("STOP")
+    print(f"Type de 'originalTitle' : {type(context['originalTitle'])}")
+    # print(f"Type de 'originalTitle'.values : {type(context['originalTitle'].values)}")
+    print("FIN")
+    return render(request, 'app/search.html', context)
