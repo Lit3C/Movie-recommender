@@ -30,11 +30,21 @@
     background: rgba(0, 0, 0, 0.8);
     transition: opacity 0.3s ease;
     cursor: help;
+    padding : 5px 10px;
+    font-size: 12px;
 }
 
-.movie-img{
-    width: 200px;
-    height: 300px;
+.movie-img {
     object-fit: cover;
     border-radius: 5px;
+}
+
+.main-movie-img {
+    width: 400px;
+    height: 600px;
+}
+
+.ml-movie-img {
+    width: 200px;
+    height: 300px;
 }
