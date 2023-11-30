@@ -172,10 +172,11 @@ def filtrer_table(request):
         table_totale_brute = table_totale_brute[table_totale_brute['vote_average'] == float(note_choisie)]    
     if langue_choisie:
         table_totale_brute = table_totale_brute.loc[table_totale_brute['original_language'] == langue_choisie]
-        
+    
+    # data_list = table_totale_brute.to_dict()
     # Paginer les résultats
     page = request.GET.get('page', 1)
-    paginator = Paginator(table_totale_brute, 10)  # nb éléments par page
+    paginator = Paginator(table_totale_brute, 25)  # nb éléments par page
 
     try:
         movies = paginator.page(page)
@@ -185,6 +186,7 @@ def filtrer_table(request):
         movies = paginator.page(paginator.num_pages)
         
     # Passez les données filtrées au modèle
+    table_totale_brute = table_totale_brute.head(100)
     context = {
         'movies': movies,
         'filtered_movies' : table_totale_brute,
@@ -209,7 +211,6 @@ def filtrer_table(request):
     print(f"Note choisi : {note_choisie}")
     print(f"Langue choisi : {langue_choisie}")
     print("STOP")
-    print(f"Type de 'originalTitle' : {type(context['originalTitle'])}")
-    # print(f"Type de 'originalTitle'.values : {type(context['originalTitle'].values)}")
+    print(f"Type de 'movies' : {type(context['movies'])}")
     print("FIN")
     return render(request, 'app/search.html', context)

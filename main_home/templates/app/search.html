@@ -3,71 +3,44 @@
 {% block title %}Recherche{% endblock title %}
 {% block stylesheet %}<link rel="stylesheet" href="{% static 'css/app.css' %}">{% endblock stylesheet %}
 
-{% comment %} {% block content %}
-<form class="my-5" role="" method="get" action="search">
-    {% csrf_token %}
-        <input type="text" id="" name="cast" placeholder="Acteur" class="form-control">
-        <input type="text" id="" name="director" placeholder="Réalisateur" class="form-control">
-    <div class="my-5">
-        <select name="langue" id="langue" class="form-control">
-            <option value="">Toutes les langues</option>
-            <option value="anglais">Anglais</option>
-            <option value="arabe">Arabe</option>
-            <option value="chinois">Chinois</option>
-            <option value="mandarin">Chinois (mandarin)</option>
-            <option value="taiwan">Chinois (taïwanais)</option>
-            <option value="coreen">Coréen</option>
-            <option value="espagnol">Espagnol</option>
-            <option value="francais">Français</option>
-            <option value="fulfulde">Fulfulde</option>
-            <option value="grec">Grec</option>
-            <option value="hebreu">Hebreu</option>
-            <option value="hindi">Hindi</option>
-            <option value="hongrois">Hongrois</option>
-            <option value="italien">Italien</option>
-            <option value="japonais">Japonais</option>
-            <option value="polonais">Polonais</option>
-            <option value="portugais">Portugais</option>
-            <option value="roumain">Roumain</option>
-            <option value="russe">Russe</option>
-        </select>
-    </div>
-</form> {% endcomment %}
-
 {% block content %}
 <div class="mx-5 my-5">
     <form method="get" action="{% url 'app-search' %}" class="my-5">
-        <label for="genre">Genre:</label>
-        <select name="genre" id="genre" class="form-control">
-            <option value="">Tous les genres</option>
-            <option value="action">Action</option>
-            <option value="adventure">Adventure</option>
-            <option value="animation">Animation</option>
-            <option value="biography">Biography</option>
-            <option value="comedy">Comedy</option>
-            <option value="crime">Crime</option>
-            <option value="documentary">Documentary</option>
-            <option value="drama">Drama</option>
-            <option value="family">Family</option>
-            <option value="fantasy">Fantasy</option>
-            <option value="film-noir">Film-noir</option>
-            <option value="history">History</option>
-            <option value="horror">Horror</option>
-            <option value="music">Music</option>
-            <option value="musical">Musical</option>
-            <option value="mystery">Mystery</option>
-            <option value="news">News</option>
-            <option value="romance">Romance</option>
-            <option value="sci-fi">Sci-Fi</option>
-            <option value="sport">Sport</option>
-            <option value="thriller">Thriller</option>
-            <option value="war">War</option>
-            <option value="western">Western</option>
-            <option value="inconnu">Autre</option>
-        </select>
-
+        <!-- _____________________________________________________________________________ Genre -->
+        <div class="mx-5 my-5">
+            <label for="genre">Genre:</label>
+            <select name="genre" id="genre" class="form-control">
+                <option value="">Tous les genres</option>
+                <option value="action">Action</option>
+                <option value="adventure">Adventure</option>
+                <option value="animation">Animation</option>
+                <option value="biography">Biography</option>
+                <option value="comedy">Comedy</option>
+                <option value="crime">Crime</option>
+                <option value="documentary">Documentary</option>
+                <option value="drama">Drama</option>
+                <option value="family">Family</option>
+                <option value="fantasy">Fantasy</option>
+                <option value="film-noir">Film-noir</option>
+                <option value="history">History</option>
+                <option value="horror">Horror</option>
+                <option value="music">Music</option>
+                <option value="musical">Musical</option>
+                <option value="mystery">Mystery</option>
+                <option value="news">News</option>
+                <option value="romance">Romance</option>
+                <option value="sci-fi">Sci-Fi</option>
+                <option value="sport">Sport</option>
+                <option value="thriller">Thriller</option>
+                <option value="war">War</option>
+                <option value="western">Western</option>
+                <option value="inconnu">Autre</option>
+            </select>
+        </div>
+        
+        <!-- _____________________________________________________________________________ Année -->
         <label for="annee">Année:</label>
-        <input type="text" name="annee">
+        <input type="text" name="annee" class="form-control form-control-dark text-bg-light">
 
         <select name="duree_classe" id="annee" class="form-control">
             <option value="">Toutes les durées</option>
@@ -76,15 +49,19 @@
             <option value="au-delà de 120 min">au-delà de 120 min</option>
         </select>
         
+        <!-- _____________________________________________________________________________ Acteur -->
         <label for="nom_acteur">Nom d'acteur:</label>
-        <input type="text" name="nom_acteur">
-
+        <input type="text" name="nom_acteur" class="form-control form-control-dark text-bg-light">
+        
+        <!-- _____________________________________________________________________________ Réalisateur -->
         <label for="realisateur">Réalisateur:</label>
-        <input type="text" name="realisateur">
-
+        <input type="text" name="realisateur" class="form-control form-control-dark text-bg-light">
+        
+        <!-- _____________________________________________________________________________ Note -->
         <label for="note">Note:</label>
-        <input type="text" name="note">
-
+        <input type="text" name="note" class="form-control form-control-dark text-bg-light">
+        
+        <!-- _____________________________________________________________________________ Langue -->
         <select name="langue" id="langue" class="form-control">
             <option value="">Toutes les langues</option>
             <option value="allemand">Allemand</option>
@@ -118,11 +95,12 @@
             <option value="yoruba">Yoruba</option>
             <option value="zoulou">Zoulou</option>
         </select>
-
+        
+        <!-- _____________________________________________________________________________ Btn FILTER -->
         <button type="submit" class="btn btn-warning">Filtrer</button>
     </form>
 
-  <!-- Afficher les résultats ici -->
+  <!-- Pagination -->
     <div>
         {% for each in poster_path %}
             <img class="movie-img" src="https://image.tmdb.org/t/p/w1280{{ each }}" alt="poster" width="200" height="300">
@@ -146,6 +124,30 @@
         {% endif %}
         </span>
     </div>
+
+    {% comment %} <div>
+        {% for movie in movies %}
+            <p> {{ movie }}</p>
+        {% endfor %}
+    </div>
+
+    <div class="pagination my-5">
+        <span class="step-links">
+        {% if movies.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ movies.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ movies.number }} of {{ movies.paginator.num_pages }}.
+        </span>
+
+        {% if movies.has_next %}
+            <a href="?page={{ movies.next_page_number }}">next</a>
+            <a href="?page={{ movies.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+        </span>
+    </div> {% endcomment %}
 </div>
 {% endblock content %}
 
