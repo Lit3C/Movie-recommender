@@ -106,11 +106,11 @@ section{
   transition: opacity 0.3s ease;
   cursor: help;
   padding : 5px 10px;
-  font-size: 12px;
+  font-size: 16px;
 }
 /* -------------------------------------------------- Reverse Choice Section -----------*/
 .wrapper{
-  max-height: 400px;
+  /* max-height: 400px; */
   overflow-x:auto;
   display: flex;
 }
@@ -130,8 +130,8 @@ section{
   display: inline;
   margin: 2% 1% 0% 0%;
 }
-  /* -------------------------------------------------- Seen Try -----------*/
-.try-film-list-container{
+  /* -------------------------------------------------- Seen Try + Serbe -----------*/
+.try-film-list-container, .serbe-film-list-container{
   display: flex;
   align-items:center;
   justify-content: space-around;
@@ -139,12 +139,6 @@ section{
 }
 
 /* -------------------------------------------------- TOP10 2023 -----------*/
-.top10-container{
-  /* border:1px solid yellow; */
-}
-.top-item-container{
-  /* border: 1px solid red; */
-}
 .top-nb {
   border:1px solid green;
   /* padding: 0% 5% 0% 0%; */
@@ -153,9 +147,7 @@ section{
   display: none;
 }
 .top-img {
-  /* position: relative; */
   z-index: 1;
-  /* margin: 0% 0% 0% 5%; */
 }
 .top-film-list-elem{
   margin: 0% 0% 0% 5%;

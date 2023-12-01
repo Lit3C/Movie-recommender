@@ -336,6 +336,8 @@ def index(request):
         'seen_startYear': df_rand_seen_movie['startYear'].values[0],
         'seen_runtime': df_rand_seen_movie['runtime'].values[0],
         'seen_poster_path': df_rand_seen_movie['poster_path'].values[0],
+        'seen_director': df_rand_seen_movie['Director'].values[0],
+        'seen_cast': df_rand_seen_movie['cast'].values[0],
         'already_seen': already_seen,
         'reverse_poster_path': farest_films['poster_path'].values.tolist(),
         'seentry_poster_path': closest_films['poster_path'].values.tolist(),

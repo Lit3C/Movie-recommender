@@ -63,12 +63,14 @@
             <h2>Avez-vous vu ce film ?</h2>
             <div class="seen-movie-container">
                 <div class="seen-movie-info">
-                    <p>{{ seen_title }} ({{ seen_startYear }})</p>
-                    <p>• {{ seen_averageRating }} /10 (sur {{ seen_vote_count }} votes)
-                        <br>• {{ seen_runtime }} min
-                        <br>• {{ seen_rand_original_language }}
+                    <h4>{{ seen_title }} ({{ seen_startYear }})</h4>
+                    <p>Note : {{ seen_averageRating }} /10 (sur {{ seen_vote_count }} votes)
+                        <br>Durée : {{ seen_runtime }} min
+                        <br>Langue : {{ seen_rand_original_language }}
                     </p>
                     <p>Genre : {{ seen_rand_genres }}</p>
+                    <p>Réalisateur : {{ seen_director }}</p>
+                    <p>Casting : {{ seen_cast }}</p>
                 </div>
                 <img src="https://image.tmdb.org/t/p/w1280{{seen_poster_path}}" width="300" height="450"/>
             </div>
@@ -133,16 +135,16 @@
     <section class="top10-container">
         <h2>TOP 10 Films de 2023</h2>
         <div class="top-film-list-container wrapper top-item-container">
-            <div class="top-film-list-elem list-elem"><p class="top-nb">1</p><img class="ml-movie-img movie-img top-img" src="https://image.tmdb.org/t/p/w1280{{ top_poster_path.0 }}" alt="poster" width="200" height="300"/></div>
-            <div class="top-film-list-elem list-elem"><p class="top-nb">2</p><img class="ml-movie-img movie-img top-img" src="https://image.tmdb.org/t/p/w1280{{ top_poster_path.1 }}" alt="poster" width="200" height="300"/></div>
-            <div class="top-film-list-elem list-elem"><p class="top-nb">3</p><img class="ml-movie-img movie-img top-img" src="https://image.tmdb.org/t/p/w1280{{ top_poster_path.2 }}" alt="poster" width="200" height="300"/></div>
-            <div class="top-film-list-elem list-elem"><p class="top-nb">4</p><img class="ml-movie-img movie-img top-img" src="https://image.tmdb.org/t/p/w1280{{ top_poster_path.3 }}" alt="poster" width="200" height="300"/></div>
-            <div class="top-film-list-elem list-elem"><p class="top-nb">5</p><img class="ml-movie-img movie-img top-img" src="https://image.tmdb.org/t/p/w1280{{ top_poster_path.4 }}" alt="poster" width="200" height="300"/></div>
-            <div class="top-film-list-elem list-elem"><p class="top-nb">6</p><img class="ml-movie-img movie-img top-img" src="https://image.tmdb.org/t/p/w1280{{ top_poster_path.5 }}" alt="poster" width="200" height="300"/></div>
-            <div class="top-film-list-elem list-elem"><p class="top-nb">7</p><img class="ml-movie-img movie-img top-img" src="https://image.tmdb.org/t/p/w1280{{ top_poster_path.6 }}" alt="poster" width="200" height="300"/></div>
-            <div class="top-film-list-elem list-elem"><p class="top-nb">8</p><img class="ml-movie-img movie-img top-img" src="https://image.tmdb.org/t/p/w1280{{ top_poster_path.7 }}" alt="poster" width="200" height="300"/></div>
-            <div class="top-film-list-elem list-elem"><p class="top-nb">9</p><img class="ml-movie-img movie-img top-img" src="https://image.tmdb.org/t/p/w1280{{ top_poster_path.8 }}" alt="poster" width="200" height="300"/></div>
-            <div class="top-film-list-elem list-elem"><p class="top-nb">10</p><img class="ml-movie-img movie-img top-img" src="https://image.tmdb.org/t/p/w1280{{ top_poster_path.9 }}" alt="poster" width="200" height="300"/></div>
+            <div class="top-film-list-elem list-elem"><p class="top-nb">1</p><img class="ml-movie-img movie-img top-img" src="https://image.tmdb.org/t/p/w1280{{ top_poster_path.0 }}" alt="poster" width="300" height="500"/></div>
+            <div class="top-film-list-elem list-elem"><p class="top-nb">2</p><img class="ml-movie-img movie-img top-img" src="https://image.tmdb.org/t/p/w1280{{ top_poster_path.1 }}" alt="poster" width="300" height="500"/></div>
+            <div class="top-film-list-elem list-elem"><p class="top-nb">3</p><img class="ml-movie-img movie-img top-img" src="https://image.tmdb.org/t/p/w1280{{ top_poster_path.2 }}" alt="poster" width="300" height="500"/></div>
+            <div class="top-film-list-elem list-elem"><p class="top-nb">4</p><img class="ml-movie-img movie-img top-img" src="https://image.tmdb.org/t/p/w1280{{ top_poster_path.3 }}" alt="poster" width="300" height="500"/></div>
+            <div class="top-film-list-elem list-elem"><p class="top-nb">5</p><img class="ml-movie-img movie-img top-img" src="https://image.tmdb.org/t/p/w1280{{ top_poster_path.4 }}" alt="poster" width="300" height="500"/></div>
+            <div class="top-film-list-elem list-elem"><p class="top-nb">6</p><img class="ml-movie-img movie-img top-img" src="https://image.tmdb.org/t/p/w1280{{ top_poster_path.5 }}" alt="poster" width="300" height="500"/></div>
+            <div class="top-film-list-elem list-elem"><p class="top-nb">7</p><img class="ml-movie-img movie-img top-img" src="https://image.tmdb.org/t/p/w1280{{ top_poster_path.6 }}" alt="poster" width="300" height="500"/></div>
+            <div class="top-film-list-elem list-elem"><p class="top-nb">8</p><img class="ml-movie-img movie-img top-img" src="https://image.tmdb.org/t/p/w1280{{ top_poster_path.7 }}" alt="poster" width="300" height="500"/></div>
+            <div class="top-film-list-elem list-elem"><p class="top-nb">9</p><img class="ml-movie-img movie-img top-img" src="https://image.tmdb.org/t/p/w1280{{ top_poster_path.8 }}" alt="poster" width="300" height="500"/></div>
+            <div class="top-film-list-elem list-elem"><p class="top-nb">10</p><img class="ml-movie-img movie-img top-img" src="https://image.tmdb.org/t/p/w1280{{ top_poster_path.9 }}" alt="poster" width="300" height="500"/></div>
             {% comment %} <div class="top-film-list-elem list-elem"><p>3</p><img class="ml-movie-img movie-img" src="{% static 'img/img_vide.jpg' %}" alt="poster" width="200" height="300"/></div> {% endcomment %}
         </div>
     </section>
