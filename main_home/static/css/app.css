@@ -129,6 +129,31 @@
   z-index: -2;
 }
   /* -------------------------------------------------- Footer -----------*/
+  .footer_container{
+    display: flex;
+    width: 100%;
+    background-color: rgb(15, 15, 15);
+    justify-content: center;
+  }
+  .footer_item{
+    justify-content: center;
+    width: 100%;
+    padding: 1% 2% 0 2%;
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+  }
+  .horaires-container, .contact-items{
+    display: flex;
+    justify-content: center;
+  }
+  .contact-title{
+    margin: 0% 2% 5% 0%;
+  }
+  .horaires, .contact{
+    display: inline;
+    margin: 0% 2%;
+  }
   #bottom_bar{
     width: 100%;
     background-color: #b98e27;
