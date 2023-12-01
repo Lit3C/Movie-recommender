@@ -25,16 +25,47 @@ def stats(request):
 
 # --------------------------------------------------------------------------------------------Read Pickle
 table_finale_dummies_3 = pd.read_pickle('user_app/data/data_raw.pickle')
+seen_movies = []
+fav_movies = []
 
-# --------------------------------------------------------------------------------------------Fonction Rand Header
-def rand_header(request):
+def index(request):
     df_home_header = pd.read_pickle('user_app/data/header-movies.pickle')
-    
+    df_raw = pd.read_pickle('user_app/data/data_raw.pickle')
+    # --------------------------------------------------------------------------------------------Fonction Rand Header
     df_home_header = df_home_header.dropna(subset=['overview'])
     
     df_home_header = df_home_header.sort_values(by='release_date', ascending=False).head(20)
     df_home_header = df_home_header.sample(n=1)
     df_home_header = df_home_header.replace('[\'', '').replace('\']', '')
+    # --------------------------------------------------------------------------------------------Fonction Rand Seen Movies    
+    df_rand_seen_movie = df_raw.dropna(subset=['poster_path'])
+    df_rand_seen_movie = df_rand_seen_movie.sample(n=1)
+    df_rand_seen_movie = df_rand_seen_movie.replace('[\'', '').replace('\']', '')
+    # --------------------------------------------------------------------------------------------Fonction Reverse Choice
+    df_reverse_choice= df_raw.sort_values(by= 'primaryTitle')
+    already_seen = "Titanic"
+    title_contains = (df_reverse_choice['originalTitle'].str.contains(already_seen, case= False))
+    X = df_reverse_choice.drop(columns = ['tconst', 'primaryTitle', 'vote_count', 'vote_average',
+       'revenue', 'budget', 'Action', 'Adventure', 'Animation',
+       'Biography', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Family',
+       'Fantasy', 'Film-Noir', 'History', 'Horror', 'Music', 'Musical',
+       'Mystery', 'News', 'Romance', 'Sci-Fi', 'Sport', 'Thriller', 'War',
+       'Western', 'inconnu', 'ratio_votes', 'originalTitle', 'startYear',
+       'genres_x', 'runtime', 'overview', 'original_language', 'poster_path',
+       'language_fact', 'Director', 'cast', 'actor_1', 'actor_2', 'actor_3',
+       'actor_4', 'actor_1_fact', 'actor_2_fact', 'actor_3_fact',
+       'actor_4_fact', 'director_fact', 'averageRating'])
+    film_features = df_reverse_choice.loc[title_contains, X.columns]
+    model_films = NearestNeighbors(n_neighbors= 18)
+    model_films.fit(X)
+    neighbors = model_films.kneighbors(film_features)
+    farest_films_index = neighbors[1][0]
+    farest_films = df_reverse_choice[['originalTitle', 'primaryTitle', 
+                                       'averageRating', 'vote_count', 'startYear', 
+                                       'genres_x', 'runtime', 'overview', 'cast', 
+                                       'Director', 'original_language', 'poster_path'
+                                       ]].iloc[farest_films_index]
+    # --------------------------------------------------------------------------------------------context
     context = {
         'backdrop_path': df_home_header['backdrop_path'].values[0],
         'genres': df_home_header['genres'].values[0],
@@ -48,9 +79,14 @@ def rand_header(request):
         'tagline': df_home_header['tagline'].values[0],
         'vote_average': df_home_header['vote_average'].values[0],
         'vote_count': df_home_header['vote_count'].values[0],
+        'seen_rand_genres': df_rand_seen_movie['genres_x'].values[0],
+        'seen_rand_original_language': df_rand_seen_movie['original_language'].values[0],
+        'seen_original_title': df_rand_seen_movie['originalTitle'].values[0],
+        'seen_title': df_rand_seen_movie['primaryTitle'].values[0],
+        'seen_poster_path': df_rand_seen_movie['poster_path'].values[0],
+        'already_seen': already_seen,
+        'reverse_poster_path': farest_films['poster_path'].values.tolist(),
     }
-    context['backdrop_path_css'] = f"url('https://image.tmdb.org/t/p/w1280{context['backdrop_path']}')"
-    print(f"le backdrop_path_css est : {context['backdrop_path_css']}")
     return render(request, 'app/app.html', context)
 
 # --------------------------------------------------------------------------------------------Fonction ML

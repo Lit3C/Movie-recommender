@@ -5,7 +5,7 @@ from . import models
 # app_name = 'user_app'
 
 urlpatterns = [
-    path('', views.rand_header, name='app-index'),
+    path('', views.index, name='app-index'),
     path('result', views.reco_sys, name='app-result'),
     path('search', views.filtrer_table, name='app-search'),
     path('list', views.lst, name='app-list'),

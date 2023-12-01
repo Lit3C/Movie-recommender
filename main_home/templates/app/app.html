@@ -61,7 +61,8 @@
     <section class="rating-section">
         <div>
             <h2>Avez-vous vu ce film ?</h2>
-            <img src="../../static/img/ratings-movie01.png" class="rating-img"/>
+            <img src="https://image.tmdb.org/t/p/w1280{{seen_poster_path}}" width="200" height="300"/>
+            {% comment %} <img src="../../static/img/ratings-movie01.png" class="rating-img"/> {% endcomment %}
         </div>
         <div class="ratings-container-btn">
             <button type="submit" class="rating-btn">OUI</button>
@@ -69,15 +70,24 @@
         </div>
     </section>
     <!-- _______________________________________________________________________________________________ SECTION ANTE-LIST -->
-    <section class="ante-list-section">
-        <h2 class="ante-list-subtitle">Parce que c'est différent</h2>
-        <div class="ante-list-container">
-            <ul>
-                <li class="ante-list-elem"><img src="../../static/img/ratings-movie02.png" class="ante-list-img-back"/></li>
-                <li class="ante-list-elem"><img src="../../static/img/ratings-movie03.png" class="ante-list-img-current"/></li>
-                <li class="ante-list-elem"><img src="../../static/img/ratings-movie04.png" class="ante-list-img-next"/></li>
-                <li class="ante-list-elem"><img src="../../static/img/ratings-movie01.png" class="ante-list-img-next2"/></li>
-            </ul>
+    <section class="reverse-list-section">
+        <h2 class="reverse-list-subtitle">Parce que c'est différent de {{already_seen}}</h2>
+        <div class="reverse-list-container wrapper">
+                <div class="reverse-list-elem"><img class="ml-movie-img movie-img" src="https://image.tmdb.org/t/p/w1280{{ reverse_poster_path.1 }}" alt="poster" width="200" height="300"/></div>
+                <div class="reverse-list-elem"><img class="ml-movie-img movie-img" src="https://image.tmdb.org/t/p/w1280{{ reverse_poster_path.2 }}" alt="poster" width="200" height="300"/></div>
+                <div class="reverse-list-elem"><img class="ml-movie-img movie-img" src="https://image.tmdb.org/t/p/w1280{{ reverse_poster_path.3 }}" alt="poster" width="200" height="300"/></div>
+                <div class="reverse-list-elem"><img class="ml-movie-img movie-img" src="https://image.tmdb.org/t/p/w1280{{ reverse_poster_path.4 }}" alt="poster" width="200" height="300"/></div>
+                <div class="reverse-list-elem"><img class="ml-movie-img movie-img" src="https://image.tmdb.org/t/p/w1280{{ reverse_poster_path.5 }}" alt="poster" width="200" height="300"/></div>
+                <div class="reverse-list-elem"><img class="ml-movie-img movie-img" src="https://image.tmdb.org/t/p/w1280{{ reverse_poster_path.6 }}" alt="poster" width="200" height="300"/></div>
+                <div class="reverse-list-elem"><img class="ml-movie-img movie-img" src="https://image.tmdb.org/t/p/w1280{{ reverse_poster_path.7 }}" alt="poster" width="200" height="300"/></div>
+                <div class="reverse-list-elem"><img class="ml-movie-img movie-img" src="https://image.tmdb.org/t/p/w1280{{ reverse_poster_path.8 }}" alt="poster" width="200" height="300"/></div>
+                <div class="reverse-list-elem"><img class="ml-movie-img movie-img" src="https://image.tmdb.org/t/p/w1280{{ reverse_poster_path.9 }}" alt="poster" width="200" height="300"/></div>
+                <div class="reverse-list-elem"><img class="ml-movie-img movie-img" src="https://image.tmdb.org/t/p/w1280{{ reverse_poster_path.10 }}" alt="poster" width="200" height="300"/></div>
+                <div class="reverse-list-elem"><img class="ml-movie-img movie-img" src="https://image.tmdb.org/t/p/w1280{{ reverse_poster_path.11 }}" alt="poster" width="200" height="300"/></div>
+                <div class="reverse-list-elem"><img class="ml-movie-img movie-img" src="https://image.tmdb.org/t/p/w1280{{ reverse_poster_path.12 }}" alt="poster" width="200" height="300"/></div>
+                <div class="reverse-list-elem"><img class="ml-movie-img movie-img" src="https://image.tmdb.org/t/p/w1280{{ reverse_poster_path.13 }}" alt="poster" width="200" height="300"/></div>
+                <div class="reverse-list-elem"><img class="ml-movie-img movie-img" src="https://image.tmdb.org/t/p/w1280{{ reverse_poster_path.14 }}" alt="poster" width="200" height="300"/></div>
+                <div class="reverse-list-elem"><img class="ml-movie-img movie-img" src="https://image.tmdb.org/t/p/w1280{{ reverse_poster_path.15 }}" alt="poster" width="200" height="300"/></div>
         </div>
     </section>
     <!-- _______________________________________________________________________________________________ SECTION SEEN-THIS-TRY-THIS -->
