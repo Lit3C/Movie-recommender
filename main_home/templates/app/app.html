@@ -61,11 +61,21 @@
     <section class="rating-section">
         <div>
             <h2>Avez-vous vu ce film ?</h2>
-            <img src="https://image.tmdb.org/t/p/w1280{{seen_poster_path}}" width="200" height="300"/>
+            <div class="seen-movie-container">
+                <div class="seen-movie-info">
+                    <p>{{ seen_title }} ({{ seen_startYear }})</p>
+                    <p>• {{ seen_averageRating }} /10 (sur {{ seen_vote_count }} votes)
+                        <br>• {{ seen_runtime }} min
+                        <br>• {{ seen_rand_original_language }}
+                    </p>
+                    <p>Genre : {{ seen_rand_genres }}</p>
+                </div>
+                <img src="https://image.tmdb.org/t/p/w1280{{seen_poster_path}}" width="300" height="450"/>
+            </div>
         </div>
         <div class="ratings-container-btn">
             <button type="button" class="rating-btn" onclick="storeImageURL('https://image.tmdb.org/t/p/w1280{{seen_poster_path}}')">OUI</button>
-            <button type="submit" class="rating-btn">NON</button>
+            <button type="button" class="rating-btn">NON</button>
         </div>
     </section>
     <!-- _______________________________________________________________________________________________ SECTION ANTE-LIST -->
@@ -120,9 +130,9 @@
         </div>
     </section>
     <!-- _______________________________________________________________________________________________ SECTION TOP 10 -->
-    <section>
+    <section class="top10-container">
         <h2>TOP 10 Films de 2023</h2>
-        <div class="top-film-list-container wrapper">
+        <div class="top-film-list-container wrapper top-item-container">
             <div class="top-film-list-elem list-elem"><p class="top-nb">1</p><img class="ml-movie-img movie-img top-img" src="https://image.tmdb.org/t/p/w1280{{ top_poster_path.0 }}" alt="poster" width="200" height="300"/></div>
             <div class="top-film-list-elem list-elem"><p class="top-nb">2</p><img class="ml-movie-img movie-img top-img" src="https://image.tmdb.org/t/p/w1280{{ top_poster_path.1 }}" alt="poster" width="200" height="300"/></div>
             <div class="top-film-list-elem list-elem"><p class="top-nb">3</p><img class="ml-movie-img movie-img top-img" src="https://image.tmdb.org/t/p/w1280{{ top_poster_path.2 }}" alt="poster" width="200" height="300"/></div>

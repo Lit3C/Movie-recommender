@@ -63,7 +63,6 @@ section{
   display: flex;
   align-items: center;
   justify-content:center;
-  padding: 5% 10%;
 }
 .ratings-container-btn{
   width: 20%;
@@ -88,8 +87,26 @@ section{
 .rating-btn:hover{
   background: #fcc236;
 }
-.rating-img {
-  width: 700px;
+.seen-movie-container{
+  width: 300px;
+  display: inline-block;
+  position: relative;
+  margin: 10px 5px;
+}
+.seen-movie-info {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  box-sizing: border-box;
+}
+.seen-movie-container:hover .seen-movie-info{
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.8);
+  transition: opacity 0.3s ease;
+  cursor: help;
+  padding : 5px 10px;
+  font-size: 12px;
 }
 /* -------------------------------------------------- Reverse Choice Section -----------*/
 .wrapper{
@@ -122,23 +139,26 @@ section{
 }
 
 /* -------------------------------------------------- TOP10 2023 -----------*/
-.top-film-list-container{
+.top10-container{
+  /* border:1px solid yellow; */
+}
+.top-item-container{
+  /* border: 1px solid red; */
 }
 .top-nb {
-  position: relative;
-  border:1px solid blue;
-  width: 200px;
-  /* position:absolute; */
-  font-size: 9em;
+  border:1px solid green;
+  /* padding: 0% 5% 0% 0%; */
+  /* font-size: 10em; */
   z-index: -1;
+  display: none;
 }
 .top-img {
-  position: absolute;
-  margin: 0% 0% 0% 5%;
+  /* position: relative; */
   z-index: 1;
-  /* padding-bottom: 10%; */
-  /* left:5%; */
-  /* display: none; */
+  /* margin: 0% 0% 0% 5%; */
+}
+.top-film-list-elem{
+  margin: 0% 0% 0% 5%;
 }
   /* -------------------------------------------------- Footer -----------*/
   .footer_container{
