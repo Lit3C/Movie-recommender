@@ -65,6 +65,19 @@ def index(request):
                                        'genres_x', 'runtime', 'overview', 'cast', 
                                        'Director', 'original_language', 'poster_path'
                                        ]].iloc[farest_films_index]
+    # --------------------------------------------------------------------------------------------Top10 2023
+    top_films = df_raw[df_raw['startYear'] == '2023'].nlargest(10, 'averageRating')
+    top_films = df_raw[df_raw['startYear'] == '2023'].nlargest(10, 'vote_count')
+    # --------------------------------------------------------------------------------------------Films Christmas
+    films_christmas = df_raw[df_raw['poster_path'] != 'vide.png']
+    films_christmas = films_christmas[df_raw['startYear'] > '1990']
+    films_christmas = films_christmas[films_christmas['overview'].str.contains('christmas', case=False)]
+    films_christmas = films_christmas[films_christmas['original_language'].str.contains('anglais', case=False)]
+    films_christmas = films_christmas[films_christmas['genres_x'].str.contains('family', case=False)]
+    films_christmas = films_christmas.nlargest(15, 'averageRating')
+    # --------------------------------------------------------------------------------------------Langue serbe
+    films_serbe = df_raw[df_raw['original_language'] == 'serbe']
+    films_serbe = films_serbe.nlargest(3, ['averageRating', 'vote_count'])
     # --------------------------------------------------------------------------------------------context
     context = {
         'backdrop_path': df_home_header['backdrop_path'].values[0],
@@ -86,6 +99,9 @@ def index(request):
         'seen_poster_path': df_rand_seen_movie['poster_path'].values[0],
         'already_seen': already_seen,
         'reverse_poster_path': farest_films['poster_path'].values.tolist(),
+        'top_poster_path': top_films['poster_path'].values.tolist(),
+        'christmas_poster_path': films_christmas['poster_path'].values.tolist(),
+        'serbe_poster_path': films_serbe['poster_path'].values.tolist(),
     }
     return render(request, 'app/app.html', context)
 
