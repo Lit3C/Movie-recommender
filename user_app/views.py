@@ -46,7 +46,13 @@ def reco_sys(request):
         film_name_contains_genres = table_finale_dummies_3['genres_x'].str.contains(film_name, case=False)
         film_name_contains_over = table_finale_dummies_3['overview'].str.contains(film_name, case=False)
 
-        if film_name_contains_dir.any():
+        if film_name_contains_original.any():
+            X = table_finale_dummies_3.drop(columns=['tconst', 'primaryTitle', 'vote_count', 'vote_average', 'originalTitle', 'genres_x','runtime', 'overview', 'cast',
+                                                    'Director', 'original_language', 'poster_path', 'startYear', 'budget', 'num_genres', 'revenue', 'ratio_votes', 'averageRating', 'actor_1', 'actor_2',
+                                                    'actor_3', 'actor_4'])
+            film_features = table_finale_dummies_3.loc[film_name_contains_original, X.columns]
+
+        elif film_name_contains_dir.any():
             X = table_finale_dummies_3.drop(columns=['tconst', 'primaryTitle', 'averageRating', 'vote_count', 'vote_average',
                                                     'revenue', 'budget', 'num_genres', 'Action', 'Adventure', 'Animation',
                                                     'Biography', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Family',
@@ -58,12 +64,6 @@ def reco_sys(request):
                                                     'actor_3_fact', 'actor_4_fact', 'genres_fact', 'actor_1', 'actor_2',
                                                     'actor_3', 'actor_4'])
             film_features = table_finale_dummies_3.loc[film_name_contains_dir, X.columns]
-
-        elif film_name_contains_original.any():
-            X = table_finale_dummies_3.drop(columns=['tconst', 'primaryTitle', 'vote_count', 'vote_average', 'originalTitle', 'genres_x','runtime', 'overview', 'cast',
-                                                    'Director', 'original_language', 'poster_path', 'startYear', 'budget', 'num_genres', 'revenue', 'ratio_votes', 'averageRating', 'actor_1', 'actor_2',
-                                                    'actor_3', 'actor_4'])
-            film_features = table_finale_dummies_3.loc[film_name_contains_original, X.columns]
 
         elif film_name_contains_actor_1.any():
             X = table_finale_dummies_3.drop(columns=['tconst', 'primaryTitle', 'averageRating', 'vote_count', 'vote_average',
