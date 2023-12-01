@@ -7,38 +7,53 @@
     <title>Movie Recommender</title>
     {% block stylesheet %}<link rel="stylesheet" href="{% static 'css/app.css' %}">{% endblock stylesheet %}
     <link rel="icon" type="image/png" href="../../static/img/pythonator2.png" />
-    <!-- Boostrap -->
+    <!-- Bootstrap -->
     <link 
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
     rel="stylesheet" 
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
     crossorigin="anonymous"/>
-<script 
+    <script 
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
     crossorigin="anonymous">
-</script>
-<script 
+    </script>
+    <script 
     src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" 
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" 
     crossorigin="anonymous">
-</script>
-<script
+    </script>
+    <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" 
     integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" 
     crossorigin="anonymous">
-</script>
+    </script>
+    <style>
+        .header-box {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            background-color: rgba(000, 000, 000, 0.5);
+        }
+    </style>
 </head>
 <body class="container-base">
     {% include 'app/layouts/navbar.html' %}
     <header class="header-box">
         <div class="header-content">
-            <h2>Ca pourrait vous plaire</h2>
-            <h1>TITRE</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
-                ut labore et dolore magna aliqua. Malesuada proin libero nunc consequat interdum varius sit.
-            </p>
+            <h1>{{ title }}</h1>
+            <h3><em>{{ tagline }}</em></h3>
+            <div class="header-info-container">
+                <img src="https://image.tmdb.org/t/p/w1280{{poster_path}}" width="200" height="300" class="header-info-content"/>
+                <div class="header-info-content">
+                    <p>Sortie : {{ release_date }}</p>
+                    <p>Genre : <br>{{ genres }}</p>
+                    <p>{{ overview }}</p>
+                </div>
+            </div>
         </div>
+        <img src="https://image.tmdb.org/t/p/w1280{{backdrop_path}}" class="header-img"/>
     </header>
 
     <section class="rating-section">
@@ -105,7 +120,7 @@
         </div>
     </section>
     <section>
-        <h2>Films disponible en hongrois</h2>
+        <h2>Films disponibles en hongrois</h2>
         <div class="film-list">
             <ul>
                 <li>Film 4</li>

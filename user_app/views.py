@@ -8,10 +8,6 @@ import pickle
 import json
 import os
 
-
-def index(request):
-    return render(request, 'app/app.html')
-
 def search(request):
     return render(request, 'app/search.html')
 
@@ -29,6 +25,30 @@ def stats(request):
 
 # --------------------------------------------------------------------------------------------Read Pickle
 table_finale_dummies_3 = pd.read_pickle('user_app/data/data_raw.pickle')
+
+# --------------------------------------------------------------------------------------------Fonction Rand Header
+def rand_header(request):
+    df_home_header = pd.read_pickle('user_app/data/header-movies.pickle')
+    df_home_header = df_home_header.sort_values(by='release_date', ascending=False).head(20)
+    df_home_header = df_home_header.sample(n=1)
+    df_home_header = df_home_header.replace('[\'', '').replace('\']', '')
+    context = {
+        'backdrop_path': df_home_header['backdrop_path'].values[0],
+        'genres': df_home_header['genres'].values[0],
+        'original_language': df_home_header['original_language'].values[0],
+        'original_title': df_home_header['original_title'].values[0],
+        'title': df_home_header['title'].values[0],
+        'overview': df_home_header['overview'].values[0],
+        'popularity': df_home_header['popularity'].values[0],
+        'poster_path': df_home_header['poster_path'].values[0],
+        'release_date': df_home_header['release_date'].values[0],
+        'tagline': df_home_header['tagline'].values[0],
+        'vote_average': df_home_header['vote_average'].values[0],
+        'vote_count': df_home_header['vote_count'].values[0],
+    }
+    context['backdrop_path_css'] = f"url('https://image.tmdb.org/t/p/w1280{context['backdrop_path']}')"
+    print(f"le backdrop_path_css est : {context['backdrop_path_css']}")
+    return render(request, 'app/app.html', context)
 
 # --------------------------------------------------------------------------------------------Fonction ML
 from sklearn.preprocessing import StandardScaler
@@ -61,14 +81,11 @@ def reco_sys(request):
                                                     'actor_3', 'actor_4'])
             film_features = table_finale_dummies_3.loc[film_name_contains_dir, X.columns]
 
-
         elif film_name_contains_original.any():
             X = table_finale_dummies_3.drop(columns=['tconst', 'primaryTitle', 'vote_count', 'vote_average', 'originalTitle', 'genres_x','runtime', 'overview', 'cast',
                                                     'Director', 'original_language', 'poster_path', 'startYear', 'budget', 'num_genres', 'revenue', 'ratio_votes', 'averageRating', 'actor_1', 'actor_2',
                                                     'actor_3', 'actor_4'])
             film_features = table_finale_dummies_3.loc[film_name_contains_original, X.columns]
-
-
 
         elif film_name_contains_actor_1.any():
             X = table_finale_dummies_3.drop(columns=['tconst', 'primaryTitle', 'averageRating', 'vote_count', 'vote_average',
@@ -168,7 +185,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def filtrer_table(request):
     table_totale_brute = pd.DataFrame(table_finale_dummies_3)
 
-    # Récupérer les paramètres de filtre depuis la requête GET
+    # Récupérer les values items du filtre
     genre_choisi = request.GET.get('genre', '')
     annee_choisie = request.GET.get('annee', '')
     duree_classe = request.GET.get('duree_classe', '')
@@ -204,8 +221,8 @@ def filtrer_table(request):
     if langue_choisie:
         table_totale_brute = table_totale_brute.loc[table_totale_brute['original_language'] == langue_choisie]
     
-    # data_list = table_totale_brute.to_dict()
-    # Paginer les résultats
+    # Pagination
+    # data_list = table_totale_brute.to_dict() # test pour pagination
     page = request.GET.get('page', 1)
     paginator = Paginator(table_totale_brute, 50)  # nb éléments par page
 
