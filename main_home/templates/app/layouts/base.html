@@ -34,11 +34,12 @@
         <div class="container-base">
         <div class="d-flex">
             {% include 'app/layouts/navbar.html' %}
-                {% block content %}
-                {% endblock content %}
+            {% block content %}
+            {% endblock content %}
             </div>
         </div>
         </div>
+        {% include 'app/layouts/footer.html' %}
     </body>
 
     {% block scripts %}{% endblock scripts %}
