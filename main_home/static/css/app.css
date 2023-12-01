@@ -128,3 +128,22 @@
   top: 1645px;
   z-index: -2;
 }
+  /* -------------------------------------------------- Footer -----------*/
+  #bottom_bar{
+    width: 100%;
+    background-color: #b98e27;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .bottom_bar_item {
+    display: inline;
+    padding: 1% 2% 0 2%;
+    color: #000;
+    font-size: 14px;
+    text-decoration: none;
+  }
+  .bold{
+    font-weight: 600;    
+    text-transform: uppercase;
+  }
