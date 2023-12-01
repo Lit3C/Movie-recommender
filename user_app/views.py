@@ -29,6 +29,9 @@ table_finale_dummies_3 = pd.read_pickle('user_app/data/data_raw.pickle')
 # --------------------------------------------------------------------------------------------Fonction Rand Header
 def rand_header(request):
     df_home_header = pd.read_pickle('user_app/data/header-movies.pickle')
+    
+    df_home_header = df_home_header.dropna(subset=['overview'])
+    
     df_home_header = df_home_header.sort_values(by='release_date', ascending=False).head(20)
     df_home_header = df_home_header.sample(n=1)
     df_home_header = df_home_header.replace('[\'', '').replace('\']', '')
