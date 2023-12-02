@@ -72,13 +72,14 @@
                     <p>Réalisateur : {{ seen_director }}</p>
                     <p>Casting : {{ seen_cast }}</p>
                 </div>
-                <img src="https://image.tmdb.org/t/p/w1280{{seen_poster_path}}" width="300" height="450"/>
+                <img id="seenMovieImage" src="https://image.tmdb.org/t/p/w1280{{seen_poster_path}}" width="300" height="450"/>
             </div>
         </div>
-        <div class="ratings-container-btn">
-            <button type="button" class="rating-btn" onclick="storeImageURL('https://image.tmdb.org/t/p/w1280{{seen_poster_path}}')">OUI</button>
+        <form method="post" action="{% url 'app-list' %}" class="ratings-container-btn">
+            {% csrf_token %}
+            <button type="submit" class="rating-btn" onclick="storeImageURL()">OUI</button>
             <button type="button" class="rating-btn">NON</button>
-        </div>
+        </form>
     </section>
     <!-- _______________________________________________________________________________________________ SECTION ANTE-LIST -->
     <section class="reverse-list-section">
@@ -177,6 +178,57 @@
     {% include 'app/layouts/footer.html' %}
 </body>
 {% block scripts %}
-    <script src="{% static 'js/app.js' %}"></script>
+<script>
+    function updateStoredUrlsList(newUrl) {
+        // Logique pour mettre à jour la liste des URLs stockées
+        var storedUrlsList = document.getElementById('storedUrlsList');
+        var listItem = document.createElement('li');
+        listItem.textContent = newUrl;
+        storedUrlsList.appendChild(listItem);
+    }
+    function storeImageURL() {
+        var seenMovieImage = document.getElementById('seenMovieImage');
+        var imageUrl = seenMovieImage.src;
+    
+        // Récupérer le jeton CSRF du cookie
+        var csrftoken = getCookie('csrftoken');
+    
+        $.ajax({
+            url: "{% url 'app-list' %}",
+            type: "POST",
+            data: {'url': imageUrl},
+            dataType: "json",
+            headers: {'X-CSRFToken': csrftoken},  // Inclure le jeton CSRF dans les en-têtes
+            success: function(data) {
+                console.log(data.message);
+                updateStoredUrlsList(imageUrl);
+    
+                // Rediriger vers la page list.html
+                window.location.href = "{% url 'app-list' %}";
+            },
+            error: function(error) {
+                console.error("Erreur lors de l'envoi de l'URL au serveur : ", error);
+            }
+        });
+    }
+    
+    // Fonction pour récupérer la valeur du cookie CSRF
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                // Chercher le préfixe du nom du cookie
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    
+</script>
 {% endblock scripts %}
 </html>

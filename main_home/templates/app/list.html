@@ -3,9 +3,19 @@
 {% block stylesheet %}<link rel="stylesheet" href="{% static 'css/app.css' %}">{% endblock stylesheet %}
 
 {% block content %}
-<div class="m-5">
+<div class="m-5 header-list">
             <h1>Videotheque</h1>
 </div>
+{% for stored_url in stored_urls %}
+    <li>
+        <a href="{{ stored_url }}" target="_blank">{{ stored_url }}</a>
+    </li>
+{% endfor %}
+
+<h1>Stored URLs</h1>
+<ul id="storedUrlsList">
+    <!-- Les URLs stockées seront ajoutées ici dynamiquement via JavaScript -->
+</ul>
 {% endblock content %}
 
 {% block scripts %}

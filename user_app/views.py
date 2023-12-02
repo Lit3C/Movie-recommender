@@ -11,9 +11,6 @@ import os
 def search(request):
     return render(request, 'app/search.html')
 
-def lst(request):
-    return render(request, 'app/list.html')
-
 def booking(request):
     return render(request, 'app/booking.html')
 
@@ -433,14 +430,16 @@ def filtrer_table(request):
     return render(request, 'app/search.html', context)
 
 # --------------------------------------------------------------------------------------------Fonction STORE IMAGE
-def store_image_url(request):
+    
+def list_view(request):
     if request.method == 'POST':
+        # Logique pour traiter la requête AJAX et stocker l'URL
         url = request.POST.get('url')
-        seen_movies.append(url)
-
-        data = {'message': 'L\'URL a été stockée avec succès.'}
+        # Faites quelque chose avec l'URL, par exemple, stockez-la
+        data = {'message': 'L\'URL a été traitée avec succès.'}
         return JsonResponse(data)
     else:
-        # Retournez une erreur si la méthode n'est pas POST
-        data = {'message': 'La méthode non autorisée a été utilisée.'}
-        return JsonResponse(data, status=405)
+        # Logique pour rendre la page list.html
+        stored_urls = [...]  # Récupérez les URLs stockées depuis votre source de données
+        context = {'stored_urls': stored_urls}
+        return render(request, 'app/list.html', context)
