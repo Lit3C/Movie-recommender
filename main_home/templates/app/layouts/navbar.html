@@ -10,8 +10,8 @@
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="{% url 'app-index' %}" class="nav-link px-2 text-secondary">Accueil</a></li>
           <li><a href="{% url 'app-search' %}" class="nav-link px-2 text-white">Rechercher</a></li>
-          <li><a href="{% url 'app-list' %}" class="nav-link px-2 text-white">Ma Vidéothèque</a></li>
-          <li><a href="{% url 'app-booking' %}" class="nav-link px-2 text-white">Mes réservations</a></li>
+          <li><a href="{% url 'app-list' %}" class="nav-link px-2 text-white">Ma liste</a></li>
+          {% comment %} <li><a href="{% url 'app-booking' %}" class="nav-link px-2 text-white">Mes réservations</a></li> {% endcomment %}
           {% comment %} <li><a href="{% url 'app-setup' %}" class="nav-link px-2 text-white">Mon profil</a></li> {% endcomment %}
         </ul>
 
@@ -22,7 +22,7 @@
 
         <div class="text-end">
             <a href="../"><button type="button" class="btn btn-outline-light me-2">Logout</button></a>
-            <a href="{% url 'app-settings' %}"><button type="button" class="btn btn-warning">Mon Profil</button></a>
+            {% comment %} <a href="{% url 'app-settings' %}"><button type="button" class="btn btn-warning">Mon Profil</button></a> {% endcomment %}
         </div>
       </div>
     </div>
